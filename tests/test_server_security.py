@@ -1,10 +1,13 @@
 import argparse
+import json
 import tempfile
 import threading
 import unittest
+from io import BytesIO
+from types import SimpleNamespace
 from unittest.mock import MagicMock, Mock, patch
 
-from pharos.server import Application, BusyError, DeadlineAPI, Deployment, RateLimitError, ResourceLimitError, WorkQueue, deployment_from_args
+from pharos.server import Application, BusyError, DeadlineAPI, Deployment, Handler, RateLimitError, ResourceLimitError, WorkQueue, deployment_from_args
 from pharos.backends.openalex_api import OpenAlex
 
 
@@ -195,6 +198,53 @@ class ServerSecurity(unittest.TestCase):
             session=app.session(now=0)
             for key in ('short','valid-looking-key\nInjected: yes','non-ascii-£-credential'):
                 with self.assertRaises(ValueError): app.set_session_key(session,key)
+
+    def test_keyed_transition_rotates_and_invalidates_the_old_session_identifier(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app=Application(directory,hosted=True)
+            session=app.session(now=0)
+            previous=session.identifier
+            session.jobs['job-a']={'status':'complete'}
+            rotated=app.rotate_session(session)
+            self.assertNotEqual(rotated,previous)
+            self.assertEqual(session.identifier,rotated)
+            self.assertIs(app.session(rotated,now=1),session)
+            self.assertIn('job-a',session.jobs)
+            self.assertNotIn(previous,app.sessions)
+            replacement=app.session(previous,now=1)
+            self.assertIsNot(replacement,session)
+            self.assertNotEqual(replacement.identifier,previous)
+            self.assertNotIn('job-a',replacement.jobs)
+
+    def test_session_key_endpoint_consumes_budget_and_reissues_cookie(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app=Application(directory,hosted=True,session_rate=1)
+            session=app.session(now=0)
+            previous=session.identifier
+            body=json.dumps({'key':'sentinel-openalex-secret-12345'}).encode()
+            handler=Handler.__new__(Handler)
+            handler.path='/api/session-key'
+            handler.command='POST'
+            handler.headers=Headers({'Content-Length':str(len(body)),'Host':'example.hf.space',
+                'Origin':'https://example.hf.space','Sec-Fetch-Site':'same-origin'})
+            handler.rfile=BytesIO(body)
+            handler.server=SimpleNamespace(app=app,deployment=self.hosted())
+            handler.session=lambda:session
+            handler.send=Mock()
+            Handler.do_POST(handler)
+            self.assertEqual(session.key,'sentinel-openalex-secret-12345')
+            self.assertNotEqual(session.identifier,previous)
+            self.assertEqual(handler._new_session_cookie,session.identifier)
+            self.assertEqual(len(session.requests),1)
+            handler.send.assert_called_once_with(200,{'has_key':True,'key_source':'session'})
+            followup=json.dumps({'action':'forget'}).encode()
+            handler.headers['Content-Length']=str(len(followup))
+            handler.rfile=BytesIO(followup)
+            handler.send.reset_mock()
+            Handler.do_POST(handler)
+            handler.send.assert_called_once()
+            self.assertEqual(handler.send.call_args.args[0],429)
+            self.assertIsNotNone(session.key)
 
     def test_forget_key_removes_authorization_from_next_transport_request(self):
         credential={'value':'sentinel-openalex-secret-12345'}

@@ -1,4 +1,4 @@
-"""Local-by-default web interface. Browser endpoints never accept credentials."""
+"""Local-by-default web interface with optional hosted session credentials."""
 import argparse
 import copy
 import json
@@ -206,6 +206,21 @@ class Application:
         if not isinstance(key,str) or not 8 <= len(key) <= 512 or not key.isascii() or any(character.isspace() or not character.isprintable() for character in key):
             raise ValueError('Enter a valid OpenAlex API key.')
         session.key=key
+
+    def rotate_session(self,session):
+        """Invalidate the old browser session identifier after a credential change."""
+        if not self.hosted: return session.identifier
+        with self.lock:
+            previous=session.identifier
+            if self.sessions.get(previous) is not session:
+                raise ValueError('This session has ended. Reload Pharos and try again.')
+            identifier=uuid.uuid4().hex
+            while identifier in self.sessions:
+                identifier=uuid.uuid4().hex
+            self.sessions.pop(previous)
+            session.identifier=identifier
+            self.sessions[identifier]=session
+            return identifier
 
     def forget_session_key(self,session): session.key=None
 
@@ -420,14 +435,17 @@ class Handler(BaseHTTPRequestHandler):
         try:
             app=self.server.app
             session=self.session()
+            if self.path == '/api/session-key': app.consume(session)
             length=int(self.headers.get('Content-Length','0'))
             if not 0 < length <= 4096: raise ValueError('Invalid request size.')
             body=json.loads(self.rfile.read(length))
             if self.path == '/api/session-key':
                 if not all(origin.startswith('https://') for origin in self.server.deployment.allowed_origins):
                     raise ValueError('Session keys require an HTTPS hosted origin.')
-                if body.get('action') == 'forget': app.forget_session_key(session)
-                elif set(body) == {'key'}: app.set_session_key(session,body['key'])
+                if body == {'action':'forget'}: app.forget_session_key(session)
+                elif set(body) == {'key'}:
+                    app.set_session_key(session,body['key'])
+                    self._new_session_cookie=app.rotate_session(session)
                 else: raise ValueError('Invalid session-key action.')
                 return self.send(200,app.auth_status(session))
             if self.path == '/api/export':
