@@ -1,0 +1,2097 @@
+{
+  "identity": {
+    "id": "https://openalex.org/I40120149",
+    "ror": "https://ror.org/052gg0110",
+    "display_name": "University of Oxford",
+    "country_code": "GB",
+    "type": "education",
+    "type_id": "https://openalex.org/institution-types/education",
+    "lineage": [
+      "https://openalex.org/I40120149"
+    ],
+    "homepage_url": "https://www.ox.ac.uk",
+    "image_url": "https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Oxford-University-Circlet.svg",
+    "image_thumbnail_url": "https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Oxford-University-Circlet.svg&width=300",
+    "display_name_acronyms": [],
+    "display_name_alternatives": [
+      "Oxford University",
+      "Prifysgol Rhydychen",
+      "University of Oxford"
+    ],
+    "repositories": [
+      {
+        "id": "https://openalex.org/S4306400608",
+        "display_name": "Oxford Academix (Oxford)",
+        "host_organization": "https://openalex.org/I40120149",
+        "host_organization_name": "University of Oxford",
+        "host_organization_lineage": [
+          "https://openalex.org/I40120149"
+        ]
+      },
+      {
+        "id": "https://openalex.org/S4306402636",
+        "display_name": "Oxford University Research Archive (ORA) (University of Oxford)",
+        "host_organization": "https://openalex.org/I40120149",
+        "host_organization_name": "University of Oxford",
+        "host_organization_lineage": [
+          "https://openalex.org/I40120149"
+        ]
+      }
+    ],
+    "works_count": 605976,
+    "cited_by_count": 64751823,
+    "summary_stats": {
+      "2yr_mean_citedness": 4.862013568409958,
+      "h_index": 2082,
+      "i10_index": 574381
+    },
+    "ids": {
+      "openalex": "https://openalex.org/I40120149",
+      "ror": "https://ror.org/052gg0110",
+      "grid": "grid.4991.5",
+      "wikipedia": "http://en.wikipedia.org/wiki/University_of_Oxford",
+      "wikidata": "Q34433"
+    },
+    "geo": {
+      "city": "Oxford",
+      "geonames_city_id": "2640729",
+      "region": "England",
+      "country_code": "GB",
+      "country": "United Kingdom",
+      "latitude": 51.75222,
+      "longitude": -1.25596
+    },
+    "international": {},
+    "associated_institutions": [
+      {
+        "id": "https://openalex.org/I1336263701",
+        "ror": "https://ror.org/01rjnta51",
+        "display_name": "Centre for Human Genetics",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I2799429764",
+        "ror": "https://ror.org/01qcxb695",
+        "display_name": "Mahosot Hospital",
+        "country_code": "LA",
+        "type": "healthcare",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I2801179840",
+        "ror": "https://ror.org/009vheq40",
+        "display_name": "Churchill Hospital",
+        "country_code": "GB",
+        "type": "healthcare",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I2802171185",
+        "ror": "https://ror.org/04c8bjx39",
+        "display_name": "Oxford Health NHS Foundation Trust",
+        "country_code": "GB",
+        "type": "healthcare",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I2802626578",
+        "ror": "https://ror.org/0336mm561",
+        "display_name": "Oxford University Press (United Kingdom)",
+        "country_code": "GB",
+        "type": "company",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I2802742124",
+        "ror": "https://ror.org/0080acb59",
+        "display_name": "John Radcliffe Hospital",
+        "country_code": "GB",
+        "type": "healthcare",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I2803066836",
+        "ror": "https://ror.org/03we1zb10",
+        "display_name": "Warneford Hospital",
+        "country_code": "GB",
+        "type": "healthcare",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I4210088942",
+        "ror": "https://ror.org/00aps1a34",
+        "display_name": "NIHR Oxford Musculoskeletal Biomedical Research Centre",
+        "country_code": "GB",
+        "type": "government",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I4210100268",
+        "ror": "https://ror.org/017g85521",
+        "display_name": "Medawar Building for Pathogen Research",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210101881",
+        "ror": "https://ror.org/0172mzb45",
+        "display_name": "Wellcome Centre for Integrative Neuroimaging",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210106471",
+        "ror": "https://ror.org/011hz4254",
+        "display_name": "CRUK/MRC Oxford Institute for Radiation Oncology",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210108304",
+        "ror": "https://ror.org/01tfjyv98",
+        "display_name": "MRC Brain Network Dynamics Unit",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210110594",
+        "ror": "https://ror.org/01q496a73",
+        "display_name": "MRC Weatherall Institute of Molecular Medicine",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210124851",
+        "ror": "https://ror.org/02kcpr174",
+        "display_name": "MRC Human Immunology Unit",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210126604",
+        "ror": "https://ror.org/03fs9z545",
+        "display_name": "Mahidol Oxford Tropical Medicine Research Unit",
+        "country_code": "TH",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210129944",
+        "ror": "https://ror.org/03myafa32",
+        "display_name": "Oxford Centre for Diabetes, Endocrinology and Metabolism",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210147017",
+        "ror": "https://ror.org/047d2d387",
+        "display_name": "Centre for the Observation and Modelling of Earthquakes, Volcanoes and Tectonics",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210150114",
+        "ror": "https://ror.org/05rehad94",
+        "display_name": "Oxford University Clinical Research Unit",
+        "country_code": "VN",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210158028",
+        "ror": "https://ror.org/05kgg0s20",
+        "display_name": "Cancer Research UK Oxford Centre",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4210162189",
+        "ror": "https://ror.org/05crdvn36",
+        "display_name": "Wellcome Centre for Ethics and Humanities",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4387152343",
+        "ror": "https://ror.org/02khxwt12",
+        "display_name": "MRC Molecular Haematology Unit",
+        "country_code": null,
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4387153988",
+        "ror": "https://ror.org/01p4s0142",
+        "display_name": "MRC Population Health Research Unit",
+        "country_code": null,
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4387154759",
+        "ror": "https://ror.org/00gnxy738",
+        "display_name": "UK Web Archive",
+        "country_code": null,
+        "type": "archive",
+        "relationship": "related"
+      },
+      {
+        "id": "https://openalex.org/I4400008925",
+        "ror": "https://ror.org/00wgpgb78",
+        "display_name": "John Adams Institute for Accelerator Science",
+        "country_code": "GB",
+        "type": "facility",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4405263025",
+        "ror": "https://ror.org/01fj67v51",
+        "display_name": "MRC Centre of Research Excellence in Restorative Neural Dynamics",
+        "country_code": "US",
+        "type": "education",
+        "relationship": "child"
+      },
+      {
+        "id": "https://openalex.org/I4405264228",
+        "ror": "https://ror.org/01ahsqc77",
+        "display_name": "Kennedy Institute of Rheumatology",
+        "country_code": "GB",
+        "type": "education",
+        "relationship": "child"
+      }
+    ],
+    "counts_by_year": [
+      {
+        "year": 2027,
+        "works_count": 6,
+        "oa_works_count": 6,
+        "cited_by_count": 0
+      },
+      {
+        "year": 2026,
+        "works_count": 22253,
+        "oa_works_count": 18770,
+        "cited_by_count": 8994
+      },
+      {
+        "year": 2025,
+        "works_count": 34766,
+        "oa_works_count": 29983,
+        "cited_by_count": 93120
+      },
+      {
+        "year": 2024,
+        "works_count": 32754,
+        "oa_works_count": 28187,
+        "cited_by_count": 231745
+      },
+      {
+        "year": 2023,
+        "works_count": 45132,
+        "oa_works_count": 40617,
+        "cited_by_count": 364439
+      },
+      {
+        "year": 2022,
+        "works_count": 86755,
+        "oa_works_count": 81505,
+        "cited_by_count": 528724
+      },
+      {
+        "year": 2021,
+        "works_count": 40483,
+        "oa_works_count": 34745,
+        "cited_by_count": 759850
+      },
+      {
+        "year": 2020,
+        "works_count": 28346,
+        "oa_works_count": 22194,
+        "cited_by_count": 1125721
+      },
+      {
+        "year": 2019,
+        "works_count": 23275,
+        "oa_works_count": 16872,
+        "cited_by_count": 930495
+      },
+      {
+        "year": 2018,
+        "works_count": 21478,
+        "oa_works_count": 14906,
+        "cited_by_count": 1000633
+      },
+      {
+        "year": 2017,
+        "works_count": 19177,
+        "oa_works_count": 12785,
+        "cited_by_count": 946060
+      },
+      {
+        "year": 2016,
+        "works_count": 17960,
+        "oa_works_count": 11547,
+        "cited_by_count": 1043282
+      },
+      {
+        "year": 2015,
+        "works_count": 16902,
+        "oa_works_count": 10283,
+        "cited_by_count": 974735
+      },
+      {
+        "year": 2014,
+        "works_count": 16419,
+        "oa_works_count": 9460,
+        "cited_by_count": 1056477
+      },
+      {
+        "year": 2013,
+        "works_count": 15088,
+        "oa_works_count": 8237,
+        "cited_by_count": 914908
+      },
+      {
+        "year": 2012,
+        "works_count": 14023,
+        "oa_works_count": 7049,
+        "cited_by_count": 880148
+      },
+      {
+        "year": 2011,
+        "works_count": 12465,
+        "oa_works_count": 5925,
+        "cited_by_count": 852052
+      },
+      {
+        "year": 2010,
+        "works_count": 11338,
+        "oa_works_count": 5099,
+        "cited_by_count": 890362
+      }
+    ],
+    "roles": [
+      {
+        "role": "funder",
+        "id": "https://openalex.org/F4320320290",
+        "works_count": 71352
+      },
+      {
+        "role": "institution",
+        "id": "https://openalex.org/I40120149",
+        "works_count": 605976
+      },
+      {
+        "role": "publisher",
+        "id": "https://openalex.org/P4310311647",
+        "works_count": 57851
+      }
+    ],
+    "topics": [
+      {
+        "id": "https://openalex.org/T14201",
+        "display_name": "Data Analysis and Archiving",
+        "count": 10287,
+        "score": 0.9998000264167786,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10605",
+        "display_name": "Historical Economic and Social Studies",
+        "count": 9602,
+        "score": 0.9997000098228455,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2002",
+          "display_name": "Economics and Econometrics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/20",
+          "display_name": "Economics, Econometrics and Finance"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10048",
+        "display_name": "Particle physics theoretical and experimental studies",
+        "count": 8124,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3106",
+          "display_name": "Nuclear and High Energy Physics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10015",
+        "display_name": "Genomics and Phylogenetic Studies",
+        "count": 7230,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1312",
+          "display_name": "Molecular Biology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/13",
+          "display_name": "Biochemistry, Genetics and Molecular Biology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10026",
+        "display_name": "Galaxies: Formation, Evolution, Phenomena",
+        "count": 5790,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3103",
+          "display_name": "Astronomy and Astrophysics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10091",
+        "display_name": "Malaria Research and Control",
+        "count": 5776,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2739",
+          "display_name": "Public Health, Environmental and Occupational Health"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10895",
+        "display_name": "Species Distribution and Climate Change",
+        "count": 5355,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2302",
+          "display_name": "Ecological Modeling"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/23",
+          "display_name": "Environmental Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10224",
+        "display_name": "Quantum Chromodynamics and Particle Interactions",
+        "count": 5071,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3106",
+          "display_name": "Nuclear and High Energy Physics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12917",
+        "display_name": "Astronomy and Astrophysical Research",
+        "count": 4825,
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3105",
+          "display_name": "Instrumentation"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12231",
+        "display_name": "Contemporary Sociological Theory and Practice",
+        "count": 4671,
+        "score": 0.9994000196456909,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10527",
+        "display_name": "High-Energy Particle Collisions Research",
+        "count": 4509,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3106",
+          "display_name": "Nuclear and High Energy Physics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10581",
+        "display_name": "Neural dynamics and brain function",
+        "count": 4449,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10017",
+        "display_name": "Geology and Paleoclimatology Research",
+        "count": 4448,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1902",
+          "display_name": "Atmospheric Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/19",
+          "display_name": "Earth and Planetary Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10252",
+        "display_name": "Microbial Natural Products and Biosynthesis",
+        "count": 4402,
+        "score": 0.9998999834060669,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2736",
+          "display_name": "Pharmacology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10166",
+        "display_name": "Mosquito-borne diseases and control",
+        "count": 4208,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2739",
+          "display_name": "Public Health, Environmental and Occupational Health"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11020",
+        "display_name": "Immune Cell Function and Interaction",
+        "count": 3744,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2403",
+          "display_name": "Immunology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/24",
+          "display_name": "Immunology and Microbiology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10039",
+        "display_name": "Stellar, planetary, and galactic studies",
+        "count": 3722,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3103",
+          "display_name": "Astronomy and Astrophysics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10241",
+        "display_name": "Functional Brain Connectivity Studies",
+        "count": 3654,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2805",
+          "display_name": "Cognitive Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13370",
+        "display_name": "Diverse Scientific and Economic Studies",
+        "count": 3644,
+        "score": 0.9968000054359436,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2002",
+          "display_name": "Economics and Econometrics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/20",
+          "display_name": "Economics, Econometrics and Finance"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12858",
+        "display_name": "Plant Disease Resistance and Genetics",
+        "count": 3630,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1110",
+          "display_name": "Plant Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/11",
+          "display_name": "Agricultural and Biological Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10199",
+        "display_name": "Wildlife Ecology and Conservation",
+        "count": 3470,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2303",
+          "display_name": "Ecology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/23",
+          "display_name": "Environmental Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10077",
+        "display_name": "Neuroscience and Neuropharmacology Research",
+        "count": 3428,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2804",
+          "display_name": "Cellular and Molecular Neuroscience"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/28",
+          "display_name": "Neuroscience"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10031",
+        "display_name": "T-cell and B-cell Immunology",
+        "count": 3315,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2403",
+          "display_name": "Immunology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/24",
+          "display_name": "Immunology and Microbiology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10095",
+        "display_name": "Cosmology and Gravitation Theories",
+        "count": 3235,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3103",
+          "display_name": "Astronomy and Astrophysics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10487",
+        "display_name": "Plant and animal studies",
+        "count": 3226,
+        "score": 1.0,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1105",
+          "display_name": "Ecology, Evolution, Behavior and Systematics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/11",
+          "display_name": "Agricultural and Biological Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      }
+    ],
+    "topic_share": [
+      {
+        "id": "https://openalex.org/T14201",
+        "display_name": "Data Analysis and Archiving",
+        "value": 0.3059058,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13906",
+        "display_name": "Social Issues and Policies",
+        "value": 0.2163408,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3311",
+          "display_name": "Safety Research"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12231",
+        "display_name": "Contemporary Sociological Theory and Practice",
+        "value": 0.0988132,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10605",
+        "display_name": "Historical Economic and Social Studies",
+        "value": 0.0906833,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2002",
+          "display_name": "Economics and Econometrics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/20",
+          "display_name": "Economics, Econometrics and Finance"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T14024",
+        "display_name": "Education, Philosophy, and Society",
+        "value": 0.0609967,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1211",
+          "display_name": "Philosophy"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13368",
+        "display_name": "University Challenges and Reforms",
+        "value": 0.060955,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3304",
+          "display_name": "Education"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13971",
+        "display_name": "Synthesis and Biological Activity",
+        "value": 0.0427777,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1306",
+          "display_name": "Cancer Research"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/13",
+          "display_name": "Biochemistry, Genetics and Molecular Biology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12714",
+        "display_name": "Youth Education and Societal Dynamics",
+        "value": 0.0325879,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10091",
+        "display_name": "Malaria Research and Control",
+        "value": 0.0322914,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2739",
+          "display_name": "Public Health, Environmental and Occupational Health"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12951",
+        "display_name": "Burkholderia infections and melioidosis",
+        "value": 0.0304058,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2713",
+          "display_name": "Epidemiology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13742",
+        "display_name": "Metallurgy and Cultural Artifacts",
+        "value": 0.0301049,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3302",
+          "display_name": "Archeology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10026",
+        "display_name": "Galaxies: Formation, Evolution, Phenomena",
+        "value": 0.029683,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3103",
+          "display_name": "Astronomy and Astrophysics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13133",
+        "display_name": "Architecture and Art History Studies",
+        "value": 0.027761,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1213",
+          "display_name": "Visual Arts and Performing Arts"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T11539",
+        "display_name": "Survey Methodology and Nonresponse",
+        "value": 0.0275586,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12633",
+        "display_name": "Legal case studies and regulations",
+        "value": 0.0256982,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3320",
+          "display_name": "Political Science and International Relations"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13933",
+        "display_name": "Whitehead's Philosophy and Applications",
+        "value": 0.0247909,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2308",
+          "display_name": "Management, Monitoring, Policy and Law"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/23",
+          "display_name": "Environmental Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12785",
+        "display_name": "Hong Kong and Taiwan Politics",
+        "value": 0.0229548,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13332",
+        "display_name": "Historical Studies on Reproduction, Gender, Health, and Societal Changes",
+        "value": 0.0227809,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1202",
+          "display_name": "History"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13330",
+        "display_name": "Theater, Performance, and Music History",
+        "value": 0.0227376,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1210",
+          "display_name": "Music"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12450",
+        "display_name": "Radio Astronomy Observations and Technology",
+        "value": 0.0219519,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3103",
+          "display_name": "Astronomy and Astrophysics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/31",
+          "display_name": "Physics and Astronomy"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10261",
+        "display_name": "Genetic Associations and Epidemiology",
+        "value": 0.0219268,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1311",
+          "display_name": "Genetics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/13",
+          "display_name": "Biochemistry, Genetics and Molecular Biology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T14109",
+        "display_name": "Scottish History and National Identity",
+        "value": 0.021894,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1202",
+          "display_name": "History"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T10252",
+        "display_name": "Microbial Natural Products and Biosynthesis",
+        "value": 0.021427,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2736",
+          "display_name": "Pharmacology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/27",
+          "display_name": "Medicine"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/4",
+          "display_name": "Health Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T13409",
+        "display_name": "Paleopathology and ancient diseases",
+        "value": 0.0213948,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1204",
+          "display_name": "Archeology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/12",
+          "display_name": "Arts and Humanities"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      },
+      {
+        "id": "https://openalex.org/T12088",
+        "display_name": "Intergenerational and Educational Inequality Studies",
+        "value": 0.0213873,
+        "subfield": {
+          "id": "https://openalex.org/subfields/3312",
+          "display_name": "Sociology and Political Science"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/33",
+          "display_name": "Social Sciences"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/2",
+          "display_name": "Social Sciences"
+        }
+      }
+    ],
+    "is_super_system": false,
+    "status": "active",
+    "works_api_url": "https://api.openalex.org/works?filter=institutions.id:I40120149",
+    "updated_date": "2026-09-07T05:59:24",
+    "created_date": "2016-06-24T00:00:00"
+  },
+  "works": [
+    {
+      "id": "https://openalex.org/W2050723389",
+      "doi": "https://doi.org/10.1039/b808893d",
+      "ids": {
+        "openalex": "https://openalex.org/W2050723389",
+        "doi": "https://doi.org/10.1039/b808893d",
+        "mag": "2050723389",
+        "pmid": "https://pubmed.ncbi.nlm.nih.gov/19396383"
+      },
+      "publication_date": "1900-01-01",
+      "publication_year": 1900,
+      "type": "article",
+      "primary_topic": {
+        "id": "https://openalex.org/T10407",
+        "display_name": "Lipid Membrane Structure and Behavior",
+        "score": 0.9987000226974487,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1312",
+          "display_name": "Molecular Biology"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/13",
+          "display_name": "Biochemistry, Genetics and Molecular Biology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      "open_access": {
+        "is_oa": true,
+        "oa_status": "green",
+        "oa_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2763081",
+        "any_repository_has_fulltext": true
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5065179718",
+            "display_name": "Hagan Bayley",
+            "orcid": "https://orcid.org/0000-0003-2499-6116"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": true,
+          "raw_author_name": "Hagan Bayley",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5026958157",
+            "display_name": "Br\u00edd Cronin",
+            "orcid": "https://orcid.org/0000-0002-3271-5145"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Brid Cronin",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5110586530",
+            "display_name": "Andrew Heron",
+            "orcid": null
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Andrew Heron",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5089011518",
+            "display_name": "Matthew A. Holden",
+            "orcid": null
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Matthew A Holden",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5047708165",
+            "display_name": "William L. Hwang",
+            "orcid": "https://orcid.org/0000-0003-4514-8837"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "William L Hwang",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5042485183",
+            "display_name": "Ruhma Syeda",
+            "orcid": "https://orcid.org/0000-0003-1453-6722"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Ruhma Syeda",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5034110021",
+            "display_name": "James R. Thompson",
+            "orcid": null
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "James Thompson",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        },
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5026536943",
+            "display_name": "Mark I. Wallace",
+            "orcid": "https://orcid.org/0000-0002-5692-8313"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": false,
+          "raw_author_name": "Mark Wallace",
+          "raw_affiliation_strings": [
+            "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+            "Department of Chemistry, University of Oxford, Oxford, UK"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford a , Oxford UK OX1 3TA \u00a0 hagan.bayley@chem.ox.ac.uk \u00a0 +44 1865 275708 \u00a0 +44 1865 285101",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemistry, University of Oxford, Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        }
+      ],
+      "abstract_inverted_index": {
+        "Droplet": [
+          0
+        ],
+        "interface": [
+          1
+        ],
+        "bilayers": [
+          2
+        ],
+        "(DIBs)": [
+          3
+        ],
+        "provide": [
+          4
+        ],
+        "a": [
+          5
+        ],
+        "superior": [
+          6
+        ],
+        "platform": [
+          7
+        ],
+        "for": [
+          8
+        ],
+        "the": [
+          9
+        ],
+        "biophysical": [
+          10
+        ],
+        "analysis": [
+          11
+        ],
+        "of": [
+          12
+        ],
+        "membrane": [
+          13
+        ],
+        "proteins.": [
+          14
+        ],
+        "The": [
+          15
+        ],
+        "versatile": [
+          16
+        ],
+        "DIBs": [
+          17
+        ],
+        "can": [
+          18
+        ],
+        "also": [
+          19
+        ],
+        "form": [
+          20
+        ],
+        "networks,": [
+          21
+        ],
+        "with": [
+          22
+        ],
+        "features": [
+          23
+        ],
+        "that": [
+          24
+        ],
+        "include": [
+          25
+        ],
+        "built-in": [
+          26
+        ],
+        "batteries": [
+          27
+        ],
+        "and": [
+          28
+        ],
+        "sensors.": [
+          29
+        ]
+      },
+      "is_retracted": false,
+      "primary_location": {
+        "id": "doi:10.1039/b808893d",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1039/b808893d",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S169293703",
+          "display_name": "Molecular BioSystems",
+          "issn_l": "1742-2051",
+          "issn": [
+            "1742-2051",
+            "1742-206X"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310320556",
+          "host_organization_name": "Royal Society of Chemistry",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320556"
+          ],
+          "host_organization_lineage_names": [
+            "Royal Society of Chemistry"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Molecular BioSystems",
+        "raw_type": "journal-article"
+      },
+      "related_works": [
+        "https://openalex.org/W4387497383",
+        "https://openalex.org/W2948807893",
+        "https://openalex.org/W2778153218",
+        "https://openalex.org/W2748952813",
+        "https://openalex.org/W1531601525",
+        "https://openalex.org/W4229748205",
+        "https://openalex.org/W2527526854",
+        "https://openalex.org/W2062208111",
+        "https://openalex.org/W1976181487",
+        "https://openalex.org/W1986764834"
+      ],
+      "funders": [
+        {
+          "id": "https://openalex.org/F4320334629",
+          "display_name": "Biotechnology and Biological Sciences Research Council",
+          "ror": "https://ror.org/00cwqg982"
+        },
+        {
+          "id": "https://openalex.org/F4320337355",
+          "display_name": "National Institute of Allergy and Infectious Diseases",
+          "ror": "https://ror.org/043z4tv69"
+        }
+      ],
+      "awards": [
+        {
+          "id": "https://openalex.org/G7701298608",
+          "display_name": null,
+          "funder_award_id": "R01 AI047276",
+          "funder_id": "https://openalex.org/F4320337355",
+          "funder_display_name": "National Institute of Allergy and Infectious Diseases"
+        }
+      ],
+      "is_xpac": false
+    },
+    {
+      "id": "https://openalex.org/W2071126219",
+      "doi": "https://doi.org/10.1016/s0033-3506(00)80235-8",
+      "ids": {
+        "openalex": "https://openalex.org/W2071126219",
+        "doi": "https://doi.org/10.1016/s0033-3506(00)80235-8",
+        "mag": "2071126219"
+      },
+      "publication_date": "1900-04-01",
+      "publication_year": 1900,
+      "type": "article",
+      "primary_topic": {
+        "id": "https://openalex.org/T11963",
+        "display_name": "Impact of Light on Environment and Health",
+        "score": 0.9732999801635742,
+        "subfield": {
+          "id": "https://openalex.org/subfields/2306",
+          "display_name": "Global and Planetary Change"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/23",
+          "display_name": "Environmental Science"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/3",
+          "display_name": "Physical Sciences"
+        }
+      },
+      "open_access": {
+        "is_oa": true,
+        "oa_status": "green",
+        "oa_url": "https://zenodo.org/record/1983356",
+        "any_repository_has_fulltext": true
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5051135581",
+            "display_name": "J. S. Haldane",
+            "orcid": "https://orcid.org/0000-0002-6535-8674"
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": true,
+          "raw_author_name": "John Haldane",
+          "raw_affiliation_strings": [
+            "University of Oxford, UK",
+            "University of Oxford, UK,"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "University of Oxford, UK",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            },
+            {
+              "raw_affiliation_string": "University of Oxford, UK,",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        }
+      ],
+      "abstract_inverted_index": null,
+      "is_retracted": false,
+      "primary_location": {
+        "id": "doi:10.1016/s0033-3506(00)80235-8",
+        "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1016/s0033-3506(00)80235-8",
+        "pdf_url": null,
+        "source": {
+          "id": "https://openalex.org/S11097115",
+          "display_name": "Public Health",
+          "issn_l": "0033-3506",
+          "issn": [
+            "0033-3506",
+            "1476-5616"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310320990",
+          "host_organization_name": "Elsevier BV",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310320990"
+          ],
+          "host_organization_lineage_names": [
+            "Elsevier BV"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Public Health",
+        "raw_type": "journal-article"
+      },
+      "related_works": [
+        "https://openalex.org/W4391375266",
+        "https://openalex.org/W2748952813",
+        "https://openalex.org/W3031052312",
+        "https://openalex.org/W4389568370",
+        "https://openalex.org/W3032375762",
+        "https://openalex.org/W1995515455",
+        "https://openalex.org/W2080531066",
+        "https://openalex.org/W3108674512",
+        "https://openalex.org/W1506200166",
+        "https://openalex.org/W1489783725"
+      ],
+      "funders": [],
+      "awards": [],
+      "is_xpac": false
+    },
+    {
+      "id": "https://openalex.org/W2606866780",
+      "doi": "https://doi.org/10.1242/jcs.s2-43.169.61",
+      "ids": {
+        "openalex": "https://openalex.org/W2606866780",
+        "doi": "https://doi.org/10.1242/jcs.s2-43.169.61",
+        "mag": "2606866780"
+      },
+      "publication_date": "1900-02-01",
+      "publication_year": 1900,
+      "type": "article",
+      "primary_topic": {
+        "id": "https://openalex.org/T12929",
+        "display_name": "Animal Genetics and Reproduction",
+        "score": 0.33799999952316284,
+        "subfield": {
+          "id": "https://openalex.org/subfields/1311",
+          "display_name": "Genetics"
+        },
+        "field": {
+          "id": "https://openalex.org/fields/13",
+          "display_name": "Biochemistry, Genetics and Molecular Biology"
+        },
+        "domain": {
+          "id": "https://openalex.org/domains/1",
+          "display_name": "Life Sciences"
+        }
+      },
+      "open_access": {
+        "is_oa": true,
+        "oa_status": "bronze",
+        "oa_url": "https://journals.biologists.com/jcs/article-pdf/s2-43/169/61/1454655/61.pdf",
+        "any_repository_has_fulltext": false
+      },
+      "authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5049541001",
+            "display_name": "J. W. Jenkinson",
+            "orcid": null
+          },
+          "institutions": [
+            {
+              "id": "https://openalex.org/I40120149",
+              "display_name": "University of Oxford",
+              "ror": "https://ror.org/052gg0110",
+              "country_code": "GB",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ],
+          "countries": [
+            "GB"
+          ],
+          "is_corresponding": true,
+          "raw_author_name": "J. W. Jenkinson",
+          "raw_affiliation_strings": [
+            "Assistant to the Linacre Professor of Comparative Anatomy in the University of Oxford"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Assistant to the Linacre Professor of Comparative Anatomy in the University of Oxford",
+              "institution_ids": [
+                "https://openalex.org/I40120149"
+              ]
+            }
+          ]
+        }
+      ],
+      "abstract_inverted_index": null,
+      "is_retracted": false,
+      "primary_location": {
+        "id": "doi:10.1242/jcs.s2-43.169.61",
+        "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1242/jcs.s2-43.169.61",
+        "pdf_url": "https://journals.biologists.com/jcs/article-pdf/s2-43/169/61/1454655/61.pdf",
+        "source": {
+          "id": "https://openalex.org/S5677253",
+          "display_name": "Journal of Cell Science",
+          "issn_l": "0021-9533",
+          "issn": [
+            "0021-9533",
+            "1477-9137"
+          ],
+          "is_oa": false,
+          "is_in_doaj": false,
+          "is_core": true,
+          "host_organization": "https://openalex.org/P4310311847",
+          "host_organization_name": "The Company of Biologists",
+          "host_organization_lineage": [
+            "https://openalex.org/P4310311847"
+          ],
+          "host_organization_lineage_names": [
+            "The Company of Biologists"
+          ],
+          "type": "journal"
+        },
+        "license": null,
+        "license_id": null,
+        "version": "publishedVersion",
+        "is_accepted": true,
+        "is_published": true,
+        "raw_source_name": "Journal of Cell Science",
+        "raw_type": "journal-article"
+      },
+      "related_works": [
+        "https://openalex.org/W2082860237",
+        "https://openalex.org/W2119695867",
+        "https://openalex.org/W2130076355",
+        "https://openalex.org/W1990804418",
+        "https://openalex.org/W1993764875",
+        "https://openalex.org/W2046158694",
+        "https://openalex.org/W2788277189",
+        "https://openalex.org/W2013243191",
+        "https://openalex.org/W2117258802",
+        "https://openalex.org/W2061542922"
+      ],
+      "funders": [],
+      "awards": [],
+      "is_xpac": false
+    }
+  ]
+}

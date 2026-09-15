@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pharos receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "backend",
+    "source_date",
+    "started_at",
+    "ended_at",
+    "retrieved_at",
+    "completion_state",
+    "records",
+    "calls",
+    "successful_responses",
+    "download_bytes",
+    "reported_cost_usd",
+    "responses_with_reported_cost",
+    "estimated_api_cost_usd",
+    "estimated_records",
+    "record_count_difference",
+    "duplicate_records",
+    "query",
+    "corpus_specification_hash",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "backend": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "retrieved_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completion_state": {
+      "enum": [
+        "estimated",
+        "retrieving",
+        "interrupted",
+        "complete"
+      ]
+    },
+    "records": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "calls": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "successful_responses": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "download_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reported_cost_usd": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "responses_with_reported_cost": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "estimated_api_cost_usd": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "estimated_records": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "record_count_difference": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "duplicate_records": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "query": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "corpus_specification_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

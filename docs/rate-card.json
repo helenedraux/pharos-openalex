@@ -1,0 +1,8 @@
+{
+  "as_of": "2026-09-07",
+  "list_call_usd": 0.0001,
+  "free_daily_budget_usd": 1.0,
+  "anonymous_daily_budget_usd": 0.1,
+  "payment_card_required": false,
+  "source": "https://help.openalex.org/access/example-costs/"
+}

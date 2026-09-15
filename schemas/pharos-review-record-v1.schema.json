@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharos.local/schemas/pharos-review-record-v1.schema.json",
+  "title": "Pharos user review record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "created_at", "guide", "judgements", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pharos-review-record-v1"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "guide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "generator", "purpose", "answers", "report"],
+      "properties": {
+        "schema_version": {"const": "pharos-review-guide-v1"},
+        "generator": {"const": "deterministic"},
+        "purpose": {"type": "object"},
+        "answers": {"type": "object"},
+        "report": {"type": "object"}
+      }
+    },
+    "judgements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["checklist_item_id", "status", "note", "note_source", "evidence_refs"],
+        "properties": {
+          "checklist_item_id": {"type": "string"},
+          "status": {"enum": ["not_checked", "checked", "concern", "unresolved", "not_applicable"]},
+          "note": {"type": "string", "maxLength": 2000},
+          "note_source": {"enum": ["human", "model_assisted_edited"]},
+          "draft_assistance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "model", "location", "generated_at", "evidence_refs"],
+            "properties": {
+              "kind": {"const": "model_generated_draft"},
+              "model": {"type": "string"},
+              "location": {"const": "local server"},
+              "generated_at": {"type": "string", "format": "date-time"},
+              "evidence_refs": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "evidence_refs": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

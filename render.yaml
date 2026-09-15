@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: pharos-openalex
+    runtime: docker
+    plan: free
+    region: frankfurt
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    maxShutdownDelaySeconds: 60
+    envVars:
+      - key: PHAROS_MODE
+        value: hosted
+      - key: PHAROS_HOST
+        value: 0.0.0.0
+      - key: PHAROS_ALLOWED_HOSTS
+        value: pharos-openalex.onrender.com,pharos.helenedraux.com
+      - key: PHAROS_ALLOWED_ORIGINS
+        value: https://pharos-openalex.onrender.com,https://pharos.helenedraux.com
+      - key: PHAROS_DATA
+        value: /data/pharos
+      - key: PHAROS_MAX_SESSIONS
+        value: "200"
+      - key: PHAROS_NETWORK_CONCURRENCY
+        value: "2"
+      - key: PHAROS_QUEUE_SIZE
+        value: "16"
+      - key: PHAROS_SESSION_TTL
+        value: "3600"
+      - key: PHAROS_SESSION_RATE
+        value: "60"
+      - key: PHAROS_SESSION_REPORTS
+        value: "5"
+      - key: PHAROS_SESSION_EXPORTS
+        value: "20"
+      - key: PHAROS_REPORT_TIMEOUT
+        value: "300"
+      - key: PHAROS_REPORT_QUERIES
+        value: "250"
+      - key: PHAROS_REPORT_COST_USD
+        value: "0.50"
+

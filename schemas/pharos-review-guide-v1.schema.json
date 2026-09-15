@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharos.local/schemas/pharos-review-guide-v1.schema.json",
+  "title": "Pharos deterministic review guide",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generator", "purpose", "answers", "report", "introduction", "items", "allowed_statuses", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pharos-review-guide-v1"},
+    "generator": {"const": "deterministic"},
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {"id": {"type": "string"}, "label": {"type": "string"}}
+    },
+    "answers": {"type": "object", "additionalProperties": {"type": "string"}},
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "identity_id", "identity_name", "retrieved_at", "implementation_version", "period"],
+      "properties": {
+        "type": {"enum": ["institution", "researcher", "source", "funder", "publisher"]},
+        "identity_id": {"type": ["string", "null"]},
+        "identity_name": {"type": ["string", "null"]},
+        "retrieved_at": {"type": ["string", "null"]},
+        "implementation_version": {"type": ["string", "integer", "null"]},
+        "period": {"type": ["object", "null"]}
+      }
+    },
+    "introduction": {"type": "string"},
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "guidance", "action", "record", "destination", "evidence_refs", "priority", "observation"],
+        "properties": {
+          "id": {"type": "string"}, "title": {"type": "string"}, "guidance": {"type": "string"}, "action": {"type": "string"}, "record": {"type": "string"}, "destination": {"type": "string"},
+          "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+          "priority": {"type": "integer", "minimum": 1, "maximum": 3},
+          "observation": {"type": ["object", "null"]}
+        }
+      }
+    },
+    "allowed_statuses": {"type": "array", "items": {"enum": ["not_checked", "checked", "concern", "unresolved", "not_applicable"]}, "uniqueItems": true},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pharos-openalex"
+version = "0.1.0"
+description = "See how OpenAlex sees your research"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+[project.optional-dependencies]
+exports = ["reportlab>=4.0"]
+
+[project.scripts]
+pharos = "pharos.cli:main"
+pharos-web = "pharos.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pharos = ["web/*.html", "web/*.css", "web/*.js", "xlsx_export.mjs"]

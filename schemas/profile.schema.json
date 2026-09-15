@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pharos profile v1",
+  "$defs": {
+    "measure": {
+      "type": "object",
+      "required": [
+        "count",
+        "denominator",
+        "population",
+        "percentage"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "population": {
+          "type": "string"
+        },
+        "percentage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "identity",
+    "backend",
+    "population",
+    "observed_years",
+    "schema_version",
+    "profile_specification",
+    "corpus_specification_hash",
+    "corpus",
+    "coverage",
+    "warnings",
+    "unresolved_submitted_identifiers",
+    "narrative",
+    "retracted_works",
+    "open_access",
+    "repository_copies",
+    "annual_counts",
+    "work_type_distribution",
+    "subject_distribution",
+    "open_access_distribution",
+    "publication_sources",
+    "collaborators",
+    "collaboration_countries"
+  ],
+  "properties": {
+    "identity": {
+      "type": "object"
+    },
+    "backend": {
+      "type": "object",
+      "required": [
+        "type",
+        "retrieved_at"
+      ]
+    },
+    "population": {
+      "type": "object",
+      "required": [
+        "eligible_works",
+        "classified_works",
+        "unclassified_works",
+        "affiliation_observable_works",
+        "observed_authorships"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "eligible_works": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "classified_works": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unclassified_works": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "affiliation_observable_works": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observed_authorships": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "observed_years": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "profile_specification": {
+      "const": "pharos-profile-v1"
+    },
+    "corpus_specification_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "corpus": {
+      "$ref": "corpus.schema.json"
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolved_submitted_identifiers": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "narrative": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "text",
+          "field"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "retracted_works": {
+      "$ref": "#/$defs/measure"
+    },
+    "open_access": {
+      "$ref": "#/$defs/measure"
+    },
+    "repository_copies": {
+      "$ref": "#/$defs/measure"
+    },
+    "annual_counts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "work_type_distribution": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "subject_distribution": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "open_access_distribution": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "publication_sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "collaborators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    },
+    "collaboration_countries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/measure"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.git
+.pharos
+output
+outputs
+tmp
+tests
+docs
+*.pyc
+__pycache__
+.DS_Store
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
