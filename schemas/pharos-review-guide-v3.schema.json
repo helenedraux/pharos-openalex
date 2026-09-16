@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharos.local/schemas/pharos-review-guide-v3.schema.json",
+  "title": "Pharos use-specific readiness guide",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generator", "purpose", "answers", "report", "introduction", "items", "readiness", "interoperability", "allowed_statuses", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pharos-review-guide-v3"},
+    "generator": {"const": "deterministic"},
+    "purpose": {"type": "object"},
+    "answers": {"type": "object"},
+    "report": {"type": "object"},
+    "introduction": {"type": "string"},
+    "items": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "matrix_key", "title", "next_step", "evidence_refs", "measurement_definition", "observed", "requirement", "materiality", "interoperability", "benchmark", "provisional_status"]}},
+    "readiness": {"type": "object", "required": ["status", "label", "essential_checks", "note"], "properties": {"status": {"enum": ["ready", "ready_with_limitations", "validation_needed", "not_supported"]}, "label": {"type": "string"}, "essential_checks": {"type": "integer"}, "note": {"type": "string"}}},
+    "interoperability": {"type": "array"},
+    "allowed_statuses": {"type": "array"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -65,8 +65,9 @@ def candidates(api, text):
     if exact:
         rows = [api.resolve(exact)]
     else:
-        rows = api.get('institutions', {'search':text, 'per_page':8})['results']
-    return [{k:r.get(k) for k in ('id','display_name','ror','country_code','type','homepage_url','works_count')} for r in rows]
+        rows = api.get('autocomplete/institutions', {'q':text})['results'][:8]
+    return [{**{k:r.get(k) for k in ('id','display_name','country_code','type','homepage_url','works_count')},
+             'ror':r.get('ror') or r.get('external_id'),'hint':r.get('hint')} for r in rows]
 
 
 def author_candidates(api, text):
@@ -77,9 +78,10 @@ def author_candidates(api, text):
     if re.fullmatch(r'A\d+',token): rows=[api.get('authors/'+token)]
     elif re.fullmatch(r'\d{4}-\d{4}-\d{4}-\d{3}[\dX]',orcid):
         rows=api.get('authors',{'filter':'orcid:'+orcid,'per_page':8}).get('results',[])
-    else: rows=api.get('authors',{'search':text,'per_page':8}).get('results',[])
+    else: rows=api.get('autocomplete/authors',{'q':text}).get('results',[])[:8]
     return [{'id':r.get('id'),'display_name':r.get('display_name'),'orcid':r.get('orcid'),
              'works_count':r.get('works_count'),'cited_by_count':r.get('cited_by_count'),
+             'hint':r.get('hint'),'orcid':r.get('orcid') or r.get('external_id'),
              'last_known_institutions':r.get('last_known_institutions') or []} for r in rows if r.get('id')]
 
 
@@ -90,9 +92,9 @@ def source_candidates(api, text):
     issn=text.removeprefix('https://issn.org/resource/ISSN/').upper()
     if re.fullmatch(r'S\d+',token): rows=[api.get('sources/'+token)]
     elif re.fullmatch(r'\d{4}-\d{3}[\dX]',issn): rows=api.get('sources',{'filter':'issn:'+issn,'per_page':8}).get('results',[])
-    else: rows=api.get('sources',{'search':text,'per_page':8}).get('results',[])
-    return [{'id':r.get('id'),'display_name':r.get('display_name'),'issn_l':r.get('issn_l'),'issn':r.get('issn') or [],
-             'type':r.get('type'),'host_organization_name':r.get('host_organization_name'),'works_count':r.get('works_count')} for r in rows if r.get('id')]
+    else: rows=api.get('autocomplete/sources',{'q':text}).get('results',[])[:8]
+    return [{'id':r.get('id'),'display_name':r.get('display_name'),'issn_l':r.get('issn_l') or r.get('external_id'),'issn':r.get('issn') or [],
+             'type':r.get('type'),'host_organization_name':r.get('host_organization_name'),'hint':r.get('hint'),'works_count':r.get('works_count')} for r in rows if r.get('id')]
 
 
 def funder_candidates(api, text):
@@ -104,20 +106,20 @@ def funder_candidates(api, text):
     elif re.fullmatch(r'(?:10\.13039/)?\d+',crossref):
         crossref=crossref.removeprefix('10.13039/')
         rows=api.get('funders',{'filter':'ids.crossref:'+crossref,'per_page':8}).get('results',[])
-    else: rows=api.get('funders',{'search':text,'per_page':8}).get('results',[])
+    else: rows=api.get('autocomplete/funders',{'q':text}).get('results',[])[:8]
     return [{'id':r.get('id'),'display_name':r.get('display_name'),'country_code':r.get('country_code'),
              'description':r.get('description'),'works_count':r.get('works_count'),'awards_count':r.get('awards_count'),
-             'ids':r.get('ids') or {}} for r in rows if r.get('id')]
+             'hint':r.get('hint'),'ids':r.get('ids') or ({'crossref':r.get('external_id')} if r.get('external_id') else {})} for r in rows if r.get('id')]
 
 
 def publisher_candidates(api, text):
     text=text.strip()
     if not text or len(text)>160: raise ValueError('Enter a publisher name or OpenAlex Publisher ID (up to 160 characters).')
     token=text.removeprefix('https://openalex.org/').upper()
-    rows=[api.get('publishers/'+token)] if re.fullmatch(r'P\d+',token) else api.get('publishers',{'search':text,'per_page':8}).get('results',[])
+    rows=[api.get('publishers/'+token)] if re.fullmatch(r'P\d+',token) else api.get('autocomplete/publishers',{'q':text}).get('results',[])[:8]
     return [{'id':r.get('id'),'display_name':r.get('display_name'),'country_codes':r.get('country_codes') or [],
              'hierarchy_level':r.get('hierarchy_level'),'parent_publisher':r.get('parent_publisher'),
-             'works_count':r.get('works_count'),'ids':r.get('ids') or {}} for r in rows if r.get('id')]
+             'works_count':r.get('works_count'),'hint':r.get('hint'),'ids':r.get('ids') or {}} for r in rows if r.get('id')]
 
 
 def source_overview(api, source, start, end, progress=lambda message:None):
@@ -136,7 +138,7 @@ def source_overview(api, source, start, end, progress=lambda message:None):
     return {'schema_version':'1.0','report_type':'source','implementation_version':2,'mode':'live_aggregates','identity':identity,
             'period':period,'retrieved_at':now(),'population':{'eligible_works':n},'coverage':coverage,'groups':groups,
             'open_access':access,'citations':citations,
-            'note':'This report covers core-corpus works whose primary location is this OpenAlex Source. A Source may be a journal, repository, conference series, book series or platform; verify the type and ISSNs before interpreting it as a journal.'}
+            'note':'This report covers core-corpus works whose primary location is this OpenAlex Source. A Source may be a journal, repository, conference series, book series, or platform; verify the type and ISSNs before interpreting it as a journal.'}
 
 
 def funder_overview(api, funder, start, end, progress=lambda message:None):
@@ -268,7 +270,7 @@ def author_overview(api, author, start, end, progress=lambda message:None):
                         'last_known_institutions':identity.get('last_known_institutions') or []},
             'period':None,'retrieved_at':now(),'population':{'eligible_works':n},
             'coverage':{'doi':doi},'groups':groups,'field_trend':field_trend,'sdg_trend':sdg_trend,'work_type_trend':work_type_trend,'open_access':open_access,'citations':citations,'identity_evidence':identity_evidence,'identity_resolution':identity_resolution,
-            'note':'This career view includes every core-corpus work linked to the selected OpenAlex Author profile, with no publication-date restriction. OpenAlex documents merging and splitting as known failure modes of its algorithmic author resolution. Compare the work-level names, ORCID assertions and affiliation history before treating the profile as one person.',
+            'note':'This career view includes every core-corpus work linked to the selected OpenAlex Author profile, with no publication-date restriction. OpenAlex documents merging and splitting as known failure modes of its algorithmic author resolution. Compare the work-level names, ORCID assertions, and affiliation history before treating the profile as one person.',
             'queries':list(getattr(api,'requests',[]))}
 
 
@@ -422,7 +424,7 @@ def resolve_author_identity(author_id,display_name,full_name,works):
     status='recommend_partition' if partition and any(t['strength']=='strong' for t in triggers) else 'review_partition' if partition else 'review_outliers' if outliers else 'keep_together'
     assigned={work_id for group in partition for work_id in group['work_ids']}
     unassigned=[{'id':w['id'],'display_name':w.get('display_name'),'publication_year':w.get('publication_year')} for w in works if w.get('id') not in assigned] if partition else []
-    return {'method':'deterministic-v1','status':status,'score_kind':'evidence_not_probability','work_count':len(works),'source_work_count':len(works)+len(excluded),'career':{'first_year':years[0] if years else None,'last_year':years[-1] if years else None,'span_years':span,'over_50_years':bool(span and span>50),'over_70_years':bool(span and span>70)},'outlier_works':[{'id':w['id'],'display_name':w.get('display_name'),'publication_year':w.get('publication_year'),'reason':'more_than_10_years_from_nearest_work'} for w in outliers],'excluded_works':[{'id':w['id'],'display_name':w.get('display_name'),'publication_year':w.get('publication_year'),'reason':'weak_work_type_and_metadata'} for w in excluded],'proposed_identities':partition,'unassigned_works':unassigned,'evidence':triggers,'rules':{'isolated_year_gap':10,'long_career_review':50,'long_career_flag':70,'minimum_name_cluster':5,'minimum_orcid_cluster':2,'strong_work_types':sorted(strong_types),'other_work_minimum_metadata_signals':2},'note':'Articles, preprints, reviews, book chapters and proceedings articles are included directly. Other types require a year and at least two strong metadata signals. Career length alone never creates a split.'}
+    return {'method':'deterministic-v1','status':status,'score_kind':'evidence_not_probability','work_count':len(works),'source_work_count':len(works)+len(excluded),'career':{'first_year':years[0] if years else None,'last_year':years[-1] if years else None,'span_years':span,'over_50_years':bool(span and span>50),'over_70_years':bool(span and span>70)},'outlier_works':[{'id':w['id'],'display_name':w.get('display_name'),'publication_year':w.get('publication_year'),'reason':'more_than_10_years_from_nearest_work'} for w in outliers],'excluded_works':[{'id':w['id'],'display_name':w.get('display_name'),'publication_year':w.get('publication_year'),'reason':'weak_work_type_and_metadata'} for w in excluded],'proposed_identities':partition,'unassigned_works':unassigned,'evidence':triggers,'rules':{'isolated_year_gap':10,'long_career_review':50,'long_career_flag':70,'minimum_name_cluster':5,'minimum_orcid_cluster':2,'strong_work_types':sorted(strong_types),'other_work_minimum_metadata_signals':2},'note':'Articles, preprints, reviews, book chapters, and proceedings articles are included directly. Other types require a year and at least two strong metadata signals. Career length alone never creates a split.'}
 
 
 def make_spec(institution, start, end):
@@ -542,7 +544,7 @@ def diagnostics(api, query, groups, n, classified):
             'lowest_coverage_sources':[r for r in rates(abstract_sources,groups['sources'],'source_works') if r['denominator'] >= 100][:5],
             'lowest_coverage_publishers':[r for r in publisher_rates if r['denominator'] >= 100][:5],
             'minimum_group_size':100,
-            'note':'Lowest abstract coverage among returned Fields, sources and direct publishers with at least 100 works. Associations are descriptive; they do not explain missing abstracts.'},
+            'note':'Lowest abstract coverage among returned Fields, sources, and direct publishers with at least 100 works. Associations are descriptive; they do not explain missing abstracts.'},
         'doi':{
             'by_work_type':rates(doi_types,groups['types'],'work_type_works'),
             'note':'DOI coverage by recorded work type. A missing DOI can be expected for some output types, so the overall percentage should not be interpreted without this breakdown.'},
@@ -592,7 +594,7 @@ def citation_summary(api, query, annual, n):
         'cited':measure(cited,n,'eligible_works'),
         'top_10_percent':measure(top_ten,n,'eligible_works'),'top_1_percent':measure(top_one,n,'eligible_works'),
         'by_publication_year':[{'year':row['id'],'total':row['count'],'cited':measure(cited_values.get(row['id'],0),row['count'],'annual_works'),'top_10_percent':measure(top_values.get(row['id'],0),row['count'],'annual_works')} for row in annual],
-        'note':'Citation counts are successful reference matches in OpenAlex and change as records are added. FWCI compares each work with works of the same type, publication year and subfield. OpenAlex does not expose a reliable aggregate FWCI coverage count, so this view uses its normalized top-10% and top-1% flags instead of inventing an institutional average.'}
+        'note':'Citation counts are successful reference matches in OpenAlex and change as records are added. FWCI compares each work with works of the same type, publication year, and subfield. OpenAlex does not expose a reliable aggregate FWCI coverage count, so this view uses its normalized top-10% and top-1% flags instead of inventing an institutional average.'}
 
 
 def evidence_signal_summary(api, query, work_types, n):
@@ -856,7 +858,8 @@ def award_detail(detail):
 def researcher_details(api, institution, start, end):
     spec=make_spec(institution,start,end)
     target=spec['resolved_openalex_id']
-    through=min(end,date.today().year-1)
+    current_year=date.today().year
+    through=min(end,current_year)
     window_start=max(start,through-2)
     profiles=[]
     # Start with prolific profiles, then rank locally on the recent window. Five
@@ -880,8 +883,8 @@ def researcher_details(api, institution, start, end):
                          'recent_works':count,'latest_affiliation_year':max(recent_affiliation_years)})
     rows.sort(key=lambda r:(-r['recent_works'],r['label'].casefold()))
     return {'researchers':rows[:100],'profiles_scanned':len(profiles),'from_year':window_start,'through_year':through,
-            'returned_limit':100,
-            'note':'Researchers whose latest known OpenAlex institution is this institution and whose affiliation history records it in the latest three complete years within the report period, ranked by all works on their OpenAlex profile during those years. Recent-work counts are not limited to works carrying this affiliation. This is a recognisability check, not a staff roster or performance ranking.'}
+            'through_year_is_partial':through==current_year,'returned_limit':100,
+            'note':'Researchers whose latest known OpenAlex institution is this institution and whose affiliation history records it in the latest three years within the report period, ranked by all works on their OpenAlex profile during those years. The current calendar year is included when selected and is explicitly treated as partial. Recent-work counts are not limited to works carrying this affiliation. This is a recognisability check, not a staff roster or performance ranking.'}
 
 
 def affiliation_audit(api, institution, name='', country=''):
@@ -961,7 +964,7 @@ def access_topics(api, institution, start, end):
             'notes':{'open_access':'OpenAlex defines OA as a free-to-read full-text copy available without payment or login.',
                      'subjects':'Only the 100 largest groups are returned. Shares exclude works without a primary topic.',
                      'orcid':'Resolved author ORCIDs among authorships linked to this institution in a reproducible 200-work sample; this is not whole-corpus coverage.',
-                     'associations':'Parent, child and related links recorded on the selected OpenAlex Institution.'}}
+                     'associations':'Parent, child, and related links recorded on the selected OpenAlex Institution.'}}
 
 
 def researcher_profile(api, institution, author):

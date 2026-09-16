@@ -10,12 +10,14 @@
 <script src="/app.js" defer>
 </script>
 </head>
-<body>
+<body class="landing">
 <header class="top">
 <a href="/" class="brand">
 <span class="mark">◒</span> PHAROS</a>
-<span class="tagline">See how OpenAlex sees your research.</span>
-<span class="local">
+<span class="tagline report-only">See how OpenAlex sees your research.</span>
+<nav class="landing-nav landing-only" aria-label="About Pharos"><a href="#why-pharos">Why check?</a><a href="#how-pharos-works">How it works</a><a href="#who-pharos-is-for">Who it’s for</a><a href="#landing-methodology">Methodology</a></nav>
+<a class="landing-open landing-only" href="#report-builder">Open a report</a>
+<span class="local report-only">
 <i>
 </i> <span id="runtime-label">Local workspace</span></span>
 </header>
@@ -61,7 +63,7 @@
 <section id="funder-overview-panel" class="panel funder-panel">
 <div id="funder-headline" class="researcher-summary-grid">
 </div>
-<p class="guidance">Direct Award records describe grants. Their investigator, institution, amount and publication links are present only when an upstream source supplied them. Work-level funding acknowledgements are an indirect trace and do not prove that every author or affiliation on the Work received the grant.</p>
+<p class="guidance">Direct Award records describe grants. Their investigator, institution, amount, and publication links are present only when an upstream source supplied them. Work-level funding acknowledgements are an indirect trace and do not prove that every author or affiliation on the Work received the grant.</p>
 <h3>Awards by recorded start year</h3>
 <div id="funder-award-years">
 </div>
@@ -118,7 +120,7 @@
 <main id="source-portrait" class="shell" hidden>
 <div class="portrait-heading">
 <div>
-<div class="step">OpenAlex source report</div>
+<div class="step">OpenAlex journal / source report</div>
 <h2 id="source-name">
 </h2>
 <p id="source-identity" class="muted">
@@ -188,9 +190,17 @@
 <div id="notice" class="notice" role="status" hidden>
 </div>
 <section id="empty" class="start-page">
+<section class="landing-hero landing-only" aria-labelledby="landing-title">
+<p class="landing-kicker">Coverage checks for OpenAlex data</p>
+<h1 id="landing-title">Know what the number <em>leaves out.</em></h1>
+<p class="landing-lede">Pharos builds an inspectable OpenAlex report for an organisation, researcher, funder, journal, or publisher. Check the coverage, missing metadata, and evidence behind a figure before you use it.</p>
+<div class="landing-actions"><a class="landing-primary" href="#report-builder">Build a report</a><a href="#how-pharos-works">See how it works</a></div>
+<div class="landing-facts"><span><strong>Live retrieval</strong> from the OpenAlex API</span><span><strong>Saved aggregate snapshots</strong> with retrieval dates</span><span><strong>Record-level inspection</strong> when evidence needs checking</span></div>
+</section>
+<div id="report-builder" class="report-builder-anchor"></div>
 <div class="step">CREATE A COVERAGE REPORT</div>
-<h1>What do you want to check?</h1>
-<p class="lede">Choose a record and a period you know well. Pharos shows what OpenAlex covers, where the gaps sit, and what they mean for analysis.</p>
+<h1>Build a coverage report</h1>
+<p class="lede">Choose the record and period you intend to analyse. Pharos keeps that scope visible throughout the report.</p>
 <form id="portrait-form" class="start-card">
 <fieldset>
 <legend>1 · Unit of interest</legend>
@@ -237,7 +247,7 @@
 <input id="end" type="number" value="2025" min="1900" required>
 </div>
 </div>
-<p id="year-help" class="small muted">Use complete calendar years.</p>
+<p id="year-help" class="small muted">The default ends with the latest complete calendar year. Include the current year only when partial-year monitoring is useful.</p>
 </fieldset>
 <button class="primary confirm" id="build" type="submit" disabled>Build coverage report →</button>
 </form>
@@ -257,12 +267,16 @@
 <div id="saved-list">
 </div>
 </div>
-<section class="aside-note" aria-label="Public service privacy">
-<strong>Public-service privacy</strong>
-<p>Reports and review notes are temporary on the hosted service. Sessions are designed to expire after one hour and may end earlier if the service restarts. Download anything you need to retain.</p>
-<p>No Pharos account is required. An optional OpenAlex API key is held only in server memory for the browser session. For private or repeatable work, run Pharos locally.</p>
-<a href="mailto:helene.draux@gmail.com">Privacy or security contact</a>
-</section>
+          <section class="aside-note" aria-label="Session and storage information">
+            <strong>Session and storage</strong>
+            <p>OpenAlex records are public. On the hosted service, your report choices and review notes are temporary and sessions may end when the service restarts. Download anything you need to retain.</p>
+            <p>No Pharos account is required. An optional OpenAlex API key is held only in server memory for the browser session.</p>
+            <a href="mailto:helene.draux@gmail.com">Privacy or security contact</a>
+          </section>
+<section id="why-pharos" class="landing-section landing-only"><p class="landing-kicker">Why check?</p><h2>Coverage determines what a metric can support</h2><div class="landing-columns"><article><span>01</span><h3>Coverage varies by question</h3><p>OpenAlex may represent some years, publishers, repositories, or work types better than others. The relevant gap depends on what you want to measure.</p></article><article><span>02</span><h3>OpenAlex changes over time</h3><p>Records and metadata are added, matched, and revised continuously. Seeing where the gaps sit—and when the snapshot was taken—helps you judge whether a result is usable and when to revisit it.</p></article><article><span>03</span><h3>Fitness depends on use</h3><p>A publication count, funding analysis, and researcher review need different evidence. Check the fields and identities your task depends on before deciding whether OpenAlex is sufficient.</p></article></div></section>
+<section id="how-pharos-works" class="landing-section landing-section-navy landing-only"><p class="landing-kicker">How it works</p><h2>One record, one explicit period, one inspectable snapshot</h2><div class="landing-steps"><article><b>1</b><h3>Choose the unit</h3><p>Organisation, researcher, funder, journal/source or publisher.</p></article><article><b>2</b><h3>Confirm the record</h3><p>Match the name and identifiers to the intended OpenAlex entity.</p></article><article><b>3</b><h3>Set the years</h3><p>Use complete calendar years for comparisons, or explicitly include the current partial year.</p></article></div></section>
+<section id="who-pharos-is-for" class="landing-section landing-only"><p class="landing-kicker">Who it’s for</p><h2>People who need to defend a research-data figure</h2><div class="landing-audiences"><article><h3>Research offices</h3><p>Check institutional totals before reporting or planning.</p></article><article><h3>Libraries and repositories</h3><p>Locate under-represented collections, sources, and affiliations.</p></article><article><h3>Bibliometric analysts</h3><p>Inspect coverage, denominators, and entity resolution before interpretation.</p></article><article><h3>Funders and publishers</h3><p>Review how linked awards, outputs, and source lineages appear in OpenAlex.</p></article></div></section>
+<section id="landing-methodology" class="landing-section landing-methodology landing-only"><div><p class="landing-kicker">Methodology</p><h2>Every report explains how its evidence was assembled</h2></div><p>Scope, retrieval dates, source populations, denominators, caveats, and tab-specific data provenance live together in the report’s Scope &amp; methods panel.</p><a href="#report-builder">Start with a record →</a></section>
 </section>
 <section id="portrait" hidden>
 <div class="portrait-heading">
@@ -339,7 +353,7 @@
 </div>
 <div class="method-compact">
 <details>
-<summary>Scope, caveats and retrieval method</summary>
+<summary>Scope, caveats, and retrieval method</summary>
 <ul id="warnings">
 </ul>
 <p id="download-note">
@@ -375,7 +389,7 @@
 </section>
 <section id="subjects-types" class="panel subjects-work-panel">
 <h3>How OpenAlex classifies the work</h3>
-<p class="guidance">OpenAlex assigns one primary Topic to a classified Work. That Topic belongs to a Subfield, Field and one of four broad Domains. The percentages below use only Works with a primary Topic; unclassified Works are reported separately.</p>
+<p class="guidance">OpenAlex assigns one primary Topic to a classified Work. That Topic belongs to a Subfield, Field, and one of four broad Domains. The percentages below use only Works with a primary Topic; unclassified Works are reported separately.</p>
 <div id="domain-chart" class="domain-grid">
 </div>
 <details>
@@ -413,7 +427,7 @@
 <div class="output-access-stack">
 <article>
 <h3>Work types through time</h3>
-<p class="guidance">Work type is OpenAlex’s description of publication format—not a quality category. Each yearly column shows the mix of formats among that year’s Works; books, datasets, reports and articles can have different metadata expectations.</p>
+<p class="guidance">Work type is OpenAlex’s description of publication format—not a quality category. Each yearly column shows the mix of formats among that year’s Works; books, datasets, reports, and articles can have different metadata expectations.</p>
 <div id="type-chart" class="bumped-chart">
 </div>
 <p id="patent-note" class="small muted">
@@ -475,7 +489,7 @@
 <p id="abstract-so-what">
 </p>
 <details id="abstract-details" class="drill-details">
-<summary>Which work types, Fields and sources have the lowest abstract coverage?</summary>
+<summary>Which work types, Fields, and sources have the lowest abstract coverage?</summary>
 <div id="abstract-types">
 </div>
 <h4>Lowest-coverage Fields</h4>
@@ -628,7 +642,7 @@
 </div>
 <div class="associated-block">
 <h3>Associated institutions</h3>
-<p>Parent, child and related organisations recorded on the selected OpenAlex Institution. They are shown for context and are not added to this report’s work count.</p>
+<p>Parent, child, and related organisations recorded on the selected OpenAlex Institution. They are shown for context and are not added to this report’s work count.</p>
 <div id="association-list">
 </div>
 </div>
@@ -659,7 +673,7 @@
 </p>
 <nav id="researcher-tabs" class="section-tabs" aria-label="Researcher report sections">
 <button data-researcher-section="researcher-identity-panel" aria-pressed="true">Identity</button>
-<button data-researcher-section="researcher-profile-panel">Research profile &amp; evidence</button>
+<button data-researcher-section="researcher-profile-panel">Career evidence</button>
 <button data-researcher-section="researcher-resolution-panel">Merge / split review</button>
 </nav>
 <section id="researcher-identity-panel" class="panel researcher-panel">

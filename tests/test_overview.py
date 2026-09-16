@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 from pharos.overview import CachedAPI, affiliation_audit, award_detail, candidates, evidence_signal_summary, funder_candidates, funder_overview, publisher_candidates, publisher_overview, get_groups, overview, publications, researcher_details, version_pairs, access_topics, make_spec, _name_compatible, resolve_author_identity
@@ -169,6 +170,18 @@ class OverviewTests(unittest.TestCase):
         self.assertEqual([r['recent_works'] for r in result['researchers']],[99,1])
         self.assertIn('not limited to works carrying this affiliation',result['note'])
 
+    def test_recent_researchers_include_the_current_year_as_partial(self):
+        api=AggregateAPI()
+        current=date.today().year
+        profile={'id':'https://openalex.org/A1','display_name':'Amy',
+                 'affiliations':[{'institution':{'id':'https://openalex.org/I1'},'years':[current]}],
+                 'counts_by_year':[{'year':current,'works_count':3}]}
+        with patch.object(api,'get',return_value={'results':[profile]}):
+            result=researcher_details(api,'I1',current-5,current)
+        self.assertEqual((result['from_year'],result['through_year']),(current-2,current))
+        self.assertTrue(result['through_year_is_partial'])
+        self.assertEqual(result['researchers'][0]['recent_works'],3)
+
     def test_affiliation_audit_separates_mapped_and_possible_misses(self):
         api=AggregateAPI()
         responses=[
@@ -183,10 +196,11 @@ class OverviewTests(unittest.TestCase):
 
     def test_name_search_returns_candidates_without_selection(self):
         api=AggregateAPI()
-        with patch.object(api,'get',return_value={'results':[{'id':'https://openalex.org/I1','display_name':'A'},{'id':'https://openalex.org/I2','display_name':'B'}]}) as request:
+        with patch.object(api,'get',return_value={'results':[{'id':'https://openalex.org/I1','display_name':'A','external_id':'https://ror.org/abc'},{'id':'https://openalex.org/I2','display_name':'B'}]}) as request:
             rows=candidates(api,'University')
             self.assertEqual(len(rows),2)
-            self.assertEqual(request.call_args.args[1]['search'],'University')
+            self.assertEqual(request.call_args.args,('autocomplete/institutions',{'q':'University'}))
+            self.assertEqual(rows[0]['ror'],'https://ror.org/abc')
 
     def test_cached_query_reuses_source_and_records_provenance(self):
         with tempfile.TemporaryDirectory() as tmp:

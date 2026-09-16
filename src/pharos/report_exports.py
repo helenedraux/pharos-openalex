@@ -201,11 +201,11 @@ def build_pdf(p, target):
         shown=rows[:limit] if limit else rows
         if not shown: story.append(para('No observations available.')); return
         table([item_label,'Works','Denominator','Share'],[[r.get('label',r['id']),f"{r['count']:,}",f"{r['denominator']:,}",'Unknown' if not r['denominator'] else f"{100*r['count']/r['denominator']:.2f}%"] for r in shown],[279,65,83,64])
-        if limit and len(rows)>limit: story.append(para(f'Showing {limit} of {len(rows)} returned items. CSV, Excel and JSON include all returned items.','PharosSmall'))
+        if limit and len(rows)>limit: story.append(para(f'Showing {limit} of {len(rows)} returned items. CSV, Excel, and JSON include all returned items.','PharosSmall'))
     story.append(para('PHAROS / COVERAGE REPORT','PharosSmall'))
     story.append(para(p['identity']['display_name'],'PharosTitle'))
     story.append(para(f"{p['corpus']['period']['from']} to {p['corpus']['period']['to']} | Retrieved {p['retrieved_at'][:10]}"))
-    story.append(para('How well does OpenAlex cover your research? Use your knowledge of the institution to inspect its recorded output, subjects, sources and affiliations.'))
+    story.append(para('How well does OpenAlex cover your research? Use your knowledge of the institution to inspect its recorded output, subjects, sources, and affiliations.'))
     story.append(para(f"{p['population']['eligible_works']:,} eligible works. Direct institution assignment; core corpus; all work types; retractions retained."))
     story.append(para('Eligible means matching the saved institution and period filters. Counts describe OpenAlex records, not completeness against your own records. The core corpus excludes the expansion corpus.','PharosSmall'))
     if p.get('briefing'):

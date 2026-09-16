@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharos.local/schemas/pharos-review-record-v3.schema.json",
+  "title": "Pharos use-specific readiness record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "created_at", "guide", "judgements", "interoperability", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pharos-review-record-v3"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "guide": {"type": "object", "required": ["schema_version", "purpose", "report", "readiness"]},
+    "judgements": {"type": "array", "items": {"type": "object", "required": ["checklist_item_id", "status", "status_source", "note", "note_source", "evidence_refs", "requirement", "materiality", "interoperability", "benchmark", "external_evidence", "override_history"]}},
+    "interoperability": {"type": "array"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

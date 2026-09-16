@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pharos.local/schemas/pharos-review-record-v2.schema.json",
+  "title": "Pharos purpose-based review record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "created_at", "guide", "judgements", "interoperability", "limitations"],
+  "properties": {
+    "schema_version": {"const": "pharos-review-record-v2"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "guide": {"type": "object"},
+    "judgements": {"type": "array", "items": {"type": "object", "required": ["checklist_item_id", "status", "note", "note_source", "evidence_refs", "requirement", "materiality", "external_evidence", "override_history"], "additionalProperties": true, "properties": {
+      "checklist_item_id": {"type": "string"}, "status": {"enum": ["not_checked", "meets_configured_requirement", "validation_needed", "does_not_meet_configured_requirement", "not_measured", "not_applicable"]}, "note": {"type": "string"}, "note_source": {"type": "string"}, "evidence_refs": {"type": "array"}, "requirement": {"type": "object"}, "materiality": {"type": "object"}, "external_evidence": {"type": "array"}, "override_history": {"type": "array"}
+    }}},
+    "interoperability": {"type": "array"},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}
