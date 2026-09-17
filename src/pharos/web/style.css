@@ -240,10 +240,10 @@ body.landing{background:#15171d;color:#f2efe7}.landing .top{background:#0d1424;b
 .readiness-legend{margin:0 0 24px;padding:20px 22px;background:#fffdf8;border:1px solid #c9c2b4}
 
 /* A beacon, not an arrow: light reveals evidence without implying certainty. */
-.landing-hero{isolation:isolate;background:linear-gradient(145deg,#070d18,#10192d 66%,#15233b)}
+.landing-hero{isolation:isolate;background:#0d1628;box-shadow:0 0 0 100vmax #0d1628}
 .landing-beacon{position:absolute;z-index:-1;inset:-18px -10vw 0 20%;overflow:hidden;pointer-events:none}
 .landing-beacon svg{display:block;width:100%;height:100%;min-height:610px}
-.landing-hero-copy{position:relative;z-index:1;max-width:690px}
+.landing-hero-copy{position:relative;z-index:1;max-width:690px;margin-left:24%}
 .beacon-stars{opacity:.72}
 .beacon-signals circle{opacity:.14;filter:drop-shadow(0 0 4px #e9aa35)}
 .beacon-signals circle:nth-child(1){animation:signal-glint 4.7s ease-in-out infinite}
@@ -262,8 +262,8 @@ body.landing{background:#15171d;color:#f2efe7}.landing .top{background:#0d1424;b
 .landing-facts{position:relative;z-index:1}
 @keyframes beacon-breathe{0%,100%{opacity:.64;transform:scaleY(.96)}50%{opacity:1;transform:scaleY(1.035)}}
 @keyframes beacon-glow{0%,100%{opacity:.68;transform:scale(.94)}50%{opacity:1;transform:scale(1.08)}}
-@keyframes signal-glint{0%,26%,100%{opacity:.1;transform:scale(.8)}36%,46%{opacity:1;transform:scale(1.45)}58%{opacity:.18;transform:scale(.9)}}
-@media(max-width:800px){.landing-beacon{inset:15% -3% 0 0;opacity:.5}.landing-beacon svg{min-height:0;height:100%}}
+@keyframes signal-glint{0%,26%,100%{opacity:.08}36%,46%{opacity:1}58%{opacity:.16}}
+@media(max-width:800px){.landing-hero-copy{margin-left:0}.landing-beacon{inset:15% -3% 0 0;opacity:.42}.landing-beacon svg{min-height:0;height:100%}.landing-facts{min-height:122px;padding-left:130px}}@media(max-width:480px){.landing-facts{padding-left:92px}}
 @media(prefers-reduced-motion:reduce){.beacon-beam,.beacon-aura,.beacon-signals circle{animation:none}.beacon-signals circle{opacity:.52}}
 .readiness-legend h3{margin:0 0 5px;font-size:20px}.readiness-legend>p{margin:0 0 16px;font-size:14px}
 .readiness-legend-levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ddd5c6;border-left:1px solid #ddd5c6}
