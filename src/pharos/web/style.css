@@ -238,6 +238,33 @@ body.landing{background:#15171d;color:#f2efe7}.landing .top{background:#0d1424;b
 #review-guide-content>.readiness-overview-intro,#review-guide-content>.readiness-overview,#review-guide-content>.review-guide-intro,#review-guide-content>.review-tier-heading,#review-guide-content>.review-check,#review-guide-content>.review-guide-footer{margin-left:0;margin-right:0}
 #review-guide-content>button:first-child{margin-bottom:20px}
 .readiness-legend{margin:0 0 24px;padding:20px 22px;background:#fffdf8;border:1px solid #c9c2b4}
+
+/* A beacon, not an arrow: light reveals evidence without implying certainty. */
+.landing-hero{isolation:isolate;background:linear-gradient(145deg,#070d18,#10192d 66%,#15233b)}
+.landing-beacon{position:absolute;z-index:-1;inset:-18px -10vw 0 20%;overflow:hidden;pointer-events:none}
+.landing-beacon svg{display:block;width:100%;height:100%;min-height:610px}
+.landing-hero-copy{position:relative;z-index:1;max-width:690px}
+.beacon-stars{opacity:.72}
+.beacon-signals circle{opacity:.14;filter:drop-shadow(0 0 4px #e9aa35)}
+.beacon-signals circle:nth-child(1){animation:signal-glint 4.7s ease-in-out infinite}
+.beacon-signals circle:nth-child(2){animation:signal-glint 6.1s 1.2s ease-in-out infinite}
+.beacon-signals circle:nth-child(3){animation:signal-glint 5.3s 3.4s ease-in-out infinite}
+.beacon-signals circle:nth-child(4){animation:signal-glint 7.2s 2.1s ease-in-out infinite}
+.beacon-signals circle:nth-child(5){animation:signal-glint 5.8s .6s ease-in-out infinite}
+.beacon-signals circle:nth-child(6){animation:signal-glint 6.7s 4s ease-in-out infinite}
+.beacon-beam{transform-origin:1001px 239px;animation:beacon-breathe 7s ease-in-out infinite}
+.beacon-aura{transform-origin:1001px 239px;animation:beacon-glow 4.5s ease-in-out infinite}
+.lighthouse{filter:drop-shadow(0 18px 22px #02050a99)}
+.landing-hero h1{text-shadow:0 2px 24px #030712cc}
+.landing-hero h1 em{color:#f0ad38;text-shadow:0 0 34px #e9aa3555}
+.landing-lede{max-width:610px;color:#c3c8d2;text-shadow:0 1px 12px #050a14}
+.landing-primary{box-shadow:0 0 30px #e9aa3530}
+.landing-facts{position:relative;z-index:1}
+@keyframes beacon-breathe{0%,100%{opacity:.64;transform:scaleY(.96)}50%{opacity:1;transform:scaleY(1.035)}}
+@keyframes beacon-glow{0%,100%{opacity:.68;transform:scale(.94)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes signal-glint{0%,26%,100%{opacity:.1;transform:scale(.8)}36%,46%{opacity:1;transform:scale(1.45)}58%{opacity:.18;transform:scale(.9)}}
+@media(max-width:800px){.landing-beacon{inset:15% -3% 0 0;opacity:.5}.landing-beacon svg{min-height:0;height:100%}}
+@media(prefers-reduced-motion:reduce){.beacon-beam,.beacon-aura,.beacon-signals circle{animation:none}.beacon-signals circle{opacity:.52}}
 .readiness-legend h3{margin:0 0 5px;font-size:20px}.readiness-legend>p{margin:0 0 16px;font-size:14px}
 .readiness-legend-levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ddd5c6;border-left:1px solid #ddd5c6}
 .readiness-legend-item{display:grid;align-content:start;gap:6px;min-height:112px;padding:14px 15px;border-right:1px solid #ddd5c6;border-bottom:1px solid #ddd5c6;border-top:4px solid var(--accent)}

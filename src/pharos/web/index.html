@@ -191,10 +191,29 @@
 </div>
 <section id="empty" class="start-page">
 <section class="landing-hero landing-only" aria-labelledby="landing-title">
+<div class="landing-beacon" aria-hidden="true">
+<svg viewBox="0 0 1180 610" preserveAspectRatio="xMaxYMax meet">
+<defs>
+<linearGradient id="pharos-beam" x1="1" y1=".56" x2="0" y2=".2"><stop offset="0" stop-color="#ffc85a" stop-opacity=".48"/><stop offset=".45" stop-color="#e9aa35" stop-opacity=".17"/><stop offset="1" stop-color="#e9aa35" stop-opacity="0"/></linearGradient>
+<radialGradient id="pharos-glow"><stop offset="0" stop-color="#ffd77d" stop-opacity=".92"/><stop offset=".24" stop-color="#e9aa35" stop-opacity=".42"/><stop offset="1" stop-color="#e9aa35" stop-opacity="0"/></radialGradient>
+<linearGradient id="pharos-sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#111b30"/><stop offset="1" stop-color="#080e19"/></linearGradient>
+<filter id="pharos-soft"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<g class="beacon-stars" fill="#647293"><circle cx="150" cy="98" r="2"/><circle cx="248" cy="184" r="1.6"/><circle cx="352" cy="72" r="2.3"/><circle cx="438" cy="242" r="1.7"/><circle cx="548" cy="126" r="2"/><circle cx="662" cy="205" r="1.5"/><circle cx="764" cy="86" r="2.1"/><circle cx="862" cy="168" r="1.7"/><circle cx="1090" cy="92" r="1.8"/><circle cx="220" cy="340" r="1.4"/><circle cx="600" cy="330" r="1.8"/></g>
+<g class="beacon-signals" fill="#f0ad38"><circle cx="352" cy="72" r="3"/><circle cx="548" cy="126" r="2.6"/><circle cx="662" cy="205" r="2.4"/><circle cx="764" cy="86" r="2.8"/><circle cx="862" cy="168" r="2.5"/><circle cx="438" cy="242" r="2.3"/></g>
+<path class="beacon-beam" d="M1001 229 C816 142 592 62 270 20 C474 172 693 266 1001 250 Z" fill="url(#pharos-beam)" filter="url(#pharos-soft)"/>
+<ellipse class="beacon-aura" cx="1001" cy="239" rx="150" ry="132" fill="url(#pharos-glow)"/>
+<path d="M0 527 C168 506 312 543 478 526 C664 507 811 548 972 524 C1050 512 1118 515 1180 524 V610 H0Z" fill="url(#pharos-sea)"/>
+<g class="lighthouse"><path d="M950 548 L970 304 H1032 L1054 548 Z" fill="#e8e3d8"/><path d="M964 382 H1039 L1046 453 H958 Z" fill="#b66045"/><path d="M952 518 H1051 L1054 548 H950 Z" fill="#b66045"/><path d="M970 304 H1032 L1036 326 H966 Z" fill="#111a2c"/><rect x="965" y="275" width="73" height="14" rx="2" fill="#0a111e"/><path d="M975 275 V235 H1028 V275" fill="#18243a" stroke="#d6a64c" stroke-width="3"/><rect x="984" y="242" width="35" height="26" fill="#ffd36f"/><path d="M965 235 L1001 207 L1038 235 Z" fill="#070d18"/><circle cx="1001" cy="239" r="7" fill="#fff1b2"/><path d="M1001 207 V193" stroke="#d9dde6" stroke-width="3"/><circle cx="1001" cy="190" r="3" fill="#e9aa35"/><g fill="#15233a"><rect x="991" y="344" width="20" height="31" rx="10"/><rect x="991" y="473" width="20" height="34" rx="10"/></g></g>
+<path d="M885 551 C925 529 968 528 1006 546 C1042 527 1092 533 1131 555 H885Z" fill="#070d17"/>
+</svg>
+</div>
+<div class="landing-hero-copy">
 <p class="landing-kicker">Coverage checks for OpenAlex data</p>
 <h1 id="landing-title">Know what the number <em>leaves out.</em></h1>
 <p class="landing-lede">Pharos builds an inspectable OpenAlex report for an organisation, researcher, funder, journal, or publisher. Check the coverage, missing metadata, and evidence behind a figure before you use it.</p>
 <div class="landing-actions"><a class="landing-primary" href="#report-builder">Build a report</a><a href="#how-pharos-works">See how it works</a></div>
+</div>
 <div class="landing-facts"><span><strong>Live retrieval</strong> from the OpenAlex API</span><span><strong>Saved aggregate snapshots</strong> with retrieval dates</span><span><strong>Record-level inspection</strong> when evidence needs checking</span></div>
 </section>
 <div id="report-builder" class="report-builder-anchor"></div>
