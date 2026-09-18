@@ -128,14 +128,16 @@ def source_overview(api, source, start, end, progress=lambda message:None):
     identity=api.get('sources/'+token); source_id=identity.get('id'); filters,period=dated_filter(f'primary_location.source.id:{source_id}',start,end); query={'filter':filters,'corpus':'core'}
     progress('Counting works in this source'); n=get_count(api,query)
     groups={}
-    for key,field in [('annual','publication_year'),('types','type'),('subjects','primary_topic.field.id'),('sdgs','sustainable_development_goals.id')]:
+    for key,field in [('annual','publication_year'),('types','type'),('domains','primary_topic.domain.id'),
+                      ('subjects','primary_topic.field.id'),('subfields','primary_topic.subfield.id'),('topics','primary_topic.id'),
+                      ('sdgs','sustainable_development_goals.id'),('institutions','authorships.institutions.id'),('funders','funders.id')]:
         rows=get_groups(api,query,field); denominator=sum(r['count'] for r in rows if r['id']!='unknown') if key=='subjects' else n
         groups[key]=shares([r for r in rows if r['id']!='unknown'],denominator,'classified_works' if key=='subjects' else 'eligible_works')
     groups['annual']=sorted([dict(r,complete_year=int(r['id'])<date.today().year) for r in groups['annual'] if re.fullmatch(r'\d{4}',r['id'])],key=lambda r:int(r['id']))
     progress('Reading coverage and access')
     coverage={'doi':measure(get_count(api,query,'has_doi:true'),n),'abstract':measure(get_count(api,query,'has_abstract:true'),n)}
     access=open_access_summary(api,query,groups['annual'],n); citations=citation_summary(api,query,groups['annual'],n)
-    return {'schema_version':'1.0','report_type':'source','implementation_version':2,'mode':'live_aggregates','identity':identity,
+    return {'schema_version':'1.0','report_type':'source','implementation_version':3,'mode':'live_aggregates','identity':identity,
             'period':period,'retrieved_at':now(),'population':{'eligible_works':n},'coverage':coverage,'groups':groups,
             'open_access':access,'citations':citations,
             'note':'This report covers core-corpus works whose primary location is this OpenAlex Source. A Source may be a journal, repository, conference series, book series, or platform; verify the type and ISSNs before interpreting it as a journal.'}
@@ -156,6 +158,16 @@ def funder_overview(api, funder, start, end, progress=lambda message:None):
         denominator=sum(r['count'] for r in rows if r['id']!='unknown') if key=='subjects' else n
         groups[key]=shares([r for r in rows if r['id']!='unknown'],denominator,'classified_works' if key=='subjects' else 'eligible_works')
     groups['annual']=sorted([dict(r,complete_year=int(r['id'])<date.today().year) for r in groups['annual'] if re.fullmatch(r'\d{4}',r['id'])],key=lambda r:int(r['id']))
+    progress('Reading affiliation coverage by year')
+    institution_years=[]
+    for annual in groups['annual']:
+        year=annual['id']; year_query={**query,'filter':query['filter']+',publication_year:'+year}
+        progress(f'Reading affiliation coverage for {year}')
+        recorded=get_count(api,year_query,'authorships.institutions.id:!null')
+        leading=next((row for row in get_groups(api,year_query,'authorships.institutions.id') if row['id']!='unknown'),None)
+        institution_years.append({'year':int(year),'linked_works':annual['count'],'with_institution':recorded,
+                                  'coverage':measure(recorded,annual['count']),
+                                  'leading_institution':leading and {'id':leading['id'],'label':leading['label'],'count':leading['count']}})
     progress('Reading coverage and access')
     coverage={'doi':measure(get_count(api,query,'has_doi:true'),n),'abstract':measure(get_count(api,query,'has_abstract:true'),n)}
     access=open_access_summary(api,query,groups['annual'],n); citations=citation_summary(api,query,groups['annual'],n)
@@ -166,19 +178,35 @@ def funder_overview(api, funder, start, end, progress=lambda message:None):
     currency_response=api.get('awards',{'filter':'funder.id:'+funder_id+',amount:>0','group_by':'currency','per_page':200})
     start_years=[{'id':str(r.get('key')),'label':str(r.get('key')),'count':r.get('count',0)} for r in start_year_response.get('group_by') or [] if str(r.get('key','')).isdigit()]
     currencies=[{'id':str(r.get('key')),'label':str(r.get('key')),'count':r.get('count',0)} for r in currency_response.get('group_by') or [] if r.get('key')]
-    sampled={r.get('id'):award_detail(r) for r in (award_response.get('results') or [])+(detailed_response.get('results') or [])}
-    sampled_rows=list(sampled.values()); sample_n=len(sampled_rows)
+    progress('Reading global funding context')
+    funders_with_awards=api.get('funders',{'filter':'awards_count:>0','per_page':1})
+    funders_with_works=api.get('funders',{'filter':'works_count:>0','per_page':1})
+    award_funder_countries=api.get('funders',{'filter':'awards_count:>0','group_by':'country_code','per_page':20})
+    work_funder_countries=api.get('funders',{'filter':'works_count:>0','group_by':'country_code','per_page':20})
+    recipient_countries=api.get('awards',{'group_by':'institution_awarded.country_code','per_page':20})
+    global_award_years=api.get('awards',{'group_by':'start_year','per_page':200})
+    global_work_years=api.get('works',{'filter':'awards.funder_id:!null','group_by':'publication_year','per_page':200})
+    grouped=lambda response:[{'id':str(r.get('key')),'label':r.get('key_display_name') or str(r.get('key')),'count':r.get('count',0)} for r in response.get('group_by') or [] if r.get('key') is not None]
+    award_year_rows=[r for r in grouped(global_award_years) if r['id'].isdigit() and start<=int(r['id'])<=end]
+    work_year_rows=[r for r in grouped(global_work_years) if r['id'].isdigit() and start<=int(r['id'])<=end]
+    global_context={'funders_with_awards':(funders_with_awards.get('meta') or {}).get('count',0),
+                    'funders_with_linked_works':(funders_with_works.get('meta') or {}).get('count',0),
+                    'award_records':(recipient_countries.get('meta') or {}).get('count',0),
+                    'linked_works':(global_work_years.get('meta') or {}).get('count',0),
+                    'award_funder_countries':grouped(award_funder_countries),'work_funder_countries':grouped(work_funder_countries),
+                    'recipient_countries':grouped(recipient_countries),
+                    'award_years':sorted(award_year_rows,key=lambda r:int(r['id'])),
+                    'work_years':sorted(work_year_rows,key=lambda r:int(r['id']))}
     awards={'count':(award_response.get('meta') or {}).get('count',0),
             'detailed_count':(detailed_response.get('meta') or {}).get('count',0),
             'detailed_rows':[award_detail(r) for r in detailed_response.get('results') or []],
             'rows':[award_detail(r) for r in award_response.get('results') or []],
             'start_years':sorted(start_years,key=lambda r:int(r['id'])), 'currencies':currencies,
-            'sample_linkage':{'sample_size':sample_n,'with_investigator':sum(bool(r['lead_investigator']) for r in sampled_rows),'with_institution':sum(bool(r['institutions']) for r in sampled_rows),'with_publications':sum(r['count']>0 for r in sampled_rows)},
             'note':'OpenAlex Award records vary by upstream source. Missing titles, amounts, dates, investigators or recipient institutions mean those fields were not supplied.'}
-    return {'schema_version':'1.0','report_type':'funder','implementation_version':5,'mode':'live_aggregates','identity':identity,
+    return {'schema_version':'1.0','report_type':'funder','implementation_version':8,'mode':'live_aggregates','identity':identity,
             'period':period,'retrieved_at':now(),'population':{'eligible_works':n},'coverage':coverage,'groups':groups,
-            'open_access':access,'citations':citations,'awards':awards,'queries':list(getattr(api,'requests',[])),
-            'note':'OpenAlex exposes two funding traces. Direct Award records can link a grant to a funder and, when supplied, a lead investigator, recipient institution, and resulting publications. Indirect Work-level funding acknowledgements can associate a Work with a funder or Award, but do not by themselves prove that a particular researcher or institution received the grant. Funding acknowledgements are incomplete, and both traces have coverage gaps.'}
+            'open_access':access,'citations':citations,'awards':awards,'institution_years':institution_years,'global_context':global_context,'queries':list(getattr(api,'requests',[])),
+            'note':'OpenAlex exposes two funding traces. Direct Award records can link a grant to a funder and, when supplied, a lead investigator, recipient institution, and resulting publications. Work-level funding acknowledgements establish a recorded association between a Work and a funder or Award, but do not assign recipient, investigator, or administering roles to the Work’s authors or affiliations. Funding acknowledgements are incomplete, and both traces have coverage gaps.'}
 
 
 def publisher_overview(api, publisher, start, end, progress=lambda message:None):
@@ -188,14 +216,15 @@ def publisher_overview(api, publisher, start, end, progress=lambda message:None)
     filters,period=dated_filter(f'primary_location.source.publisher_lineage:{publisher_id}',start,end); query={'filter':filters,'corpus':'core'}
     progress('Counting works published in this lineage'); n=get_count(api,query); groups={}
     for key,field in [('annual','publication_year'),('types','type'),('subjects','primary_topic.field.id'),
-                      ('sdgs','sustainable_development_goals.id'),('sources','primary_location.source.id')]:
+                      ('sdgs','sustainable_development_goals.id'),('sources','primary_location.source.id'),
+                      ('institutions','authorships.institutions.id')]:
         progress('Reading '+key); rows=get_groups(api,query,field)
         denominator=sum(r['count'] for r in rows if r['id']!='unknown') if key=='subjects' else n
         groups[key]=shares([r for r in rows if r['id']!='unknown'],denominator,'classified_works' if key=='subjects' else 'eligible_works')
     groups['annual']=sorted([dict(r,complete_year=int(r['id'])<date.today().year) for r in groups['annual'] if re.fullmatch(r'\d{4}',r['id'])],key=lambda r:int(r['id']))
     progress('Reading coverage and access')
     coverage={'doi':measure(get_count(api,query,'has_doi:true'),n),'abstract':measure(get_count(api,query,'has_abstract:true'),n)}
-    return {'schema_version':'1.0','report_type':'publisher','implementation_version':2,'mode':'live_aggregates','identity':identity,
+    return {'schema_version':'1.0','report_type':'publisher','implementation_version':3,'mode':'live_aggregates','identity':identity,
             'period':period,'retrieved_at':now(),'population':{'eligible_works':n},'coverage':coverage,'groups':groups,
             'open_access':open_access_summary(api,query,groups['annual'],n),'citations':citation_summary(api,query,groups['annual'],n),
             'queries':list(getattr(api,'requests',[])),
@@ -594,7 +623,7 @@ def citation_summary(api, query, annual, n):
         'cited':measure(cited,n,'eligible_works'),
         'top_10_percent':measure(top_ten,n,'eligible_works'),'top_1_percent':measure(top_one,n,'eligible_works'),
         'by_publication_year':[{'year':row['id'],'total':row['count'],'cited':measure(cited_values.get(row['id'],0),row['count'],'annual_works'),'top_10_percent':measure(top_values.get(row['id'],0),row['count'],'annual_works')} for row in annual],
-        'note':'Citation counts are successful reference matches in OpenAlex and change as records are added. FWCI compares each work with works of the same type, publication year, and subfield. OpenAlex does not expose a reliable aggregate FWCI coverage count, so this view uses its normalized top-10% and top-1% flags instead of inventing an institutional average.'}
+        'note':'Citation counts are successful reference matches in OpenAlex and change as records are added. OpenAlex normalized citation percentiles compare each Work with Works of the same publication year, work type, and subfield. The top-10% and top-1% flags are changing database indicators, not quality rankings or evidence that the viewed entity caused the citations. OpenAlex does not expose a reliable aggregate FWCI coverage count, so this view does not invent an institutional average.'}
 
 
 def evidence_signal_summary(api, query, work_types, n):

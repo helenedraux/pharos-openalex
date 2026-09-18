@@ -82,9 +82,18 @@ class OverviewTests(unittest.TestCase):
         p=funder_overview(api,'F1',1900,2025)
         self.assertEqual(p['report_type'],'funder')
         self.assertEqual(p['population']['eligible_works'],3)
-        self.assertTrue(all('awards.funder_id:https://openalex.org/F1' in params['filter'] for path,params in api.calls if path=='works'))
+        selected_work_calls=[params for path,params in api.calls if path=='works' and 'https://openalex.org/F1' in params.get('filter','')]
+        self.assertTrue(selected_work_calls)
+        self.assertTrue(all('awards.funder_id:https://openalex.org/F1' in params['filter'] for params in selected_work_calls))
         self.assertIn('institutions',p['groups'])
         self.assertIn('Funding acknowledgements are incomplete',p['note'])
+        self.assertEqual(p['implementation_version'],8)
+        self.assertIn('global_context',p)
+        self.assertNotIn('sample_linkage',p['awards'])
+        self.assertEqual(p['institution_years'][0]['coverage']['percentage'],100)
+        self.assertEqual(p['institution_years'][0]['leading_institution']['label'],'Home')
+        yearly_calls=[params for path,params in api.calls if path=='works' and 'publication_year:2020' in params.get('filter','')]
+        self.assertTrue(any('authorships.institutions.id:!null' in params['filter'] for params in yearly_calls))
 
     def test_funder_crossref_identifier_is_resolved_exactly(self):
         api=AggregateAPI()

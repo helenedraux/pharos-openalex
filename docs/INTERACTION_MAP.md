@@ -28,7 +28,7 @@ Award occurrence on a Work does not prove that the selected researcher was an in
 
 ## Funder
 
-Awards is the first and default tab. It provides two labelled samples: large awards with recorded amounts and Award records linked to the most outputs. Remaining tabs cover aggregate output, subjects and affiliated institutions, access and citations, and the OpenAlex Funder record.
+Evidence overview is the first and default tab. Award records provides two explicitly ranked views: Awards with the largest recorded amounts and Award records linked to the most outputs. These are exploration lists, not statistical samples, and Pharos does not use them to estimate field completeness. Separate tabs cover research themes, institutions, outputs, access, citations, and the OpenAlex Funder record. The Institutions tab reports yearly authorship-affiliation coverage and the most frequent affiliated institution on linked Works; neither is recipient evidence.
 
 Award data varies substantially by provenance. Missing amount, investigator, institution, date, or title is unknown rather than zero.
 

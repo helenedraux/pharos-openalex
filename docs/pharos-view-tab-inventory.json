@@ -1,0 +1,292 @@
+{
+  "document": {
+    "title": "Pharos view and tab inventory",
+    "purpose": "A structured inventory for reviewing whether Pharos exposes enough OpenAlex evidence to understand representation gaps and judge fitness for an intended analysis.",
+    "generated_on": "2026-09-17",
+    "source": "Current Pharos interface and implementation",
+    "status": "Implemented",
+    "review_request": [
+      "Identify important evidence, coverage measures, denominators, drill-downs, or caveats missing from each tab.",
+      "Identify information placed in the wrong tab or duplicated without a clear reason.",
+      "Check whether every measure helps a user understand how OpenAlex represents the selected entity or whether the data is fit for a stated analysis.",
+      "Flag any wording that could imply causality, Award receipt, administrative responsibility, identity certainty, completeness, or quality when the data does not support it.",
+      "Suggest additional global or peer context only when its comparison population and denominator can be stated defensibly."
+    ]
+  },
+  "product_aim": {
+    "primary": "Show what OpenAlex contains about an organisation, researcher, funder, journal/source, or publisher.",
+    "secondary": "Show where relevant metadata is missing, ambiguous, incomplete, or dependent on entity resolution.",
+    "decision": "Help a user estimate whether the OpenAlex evidence is fit for the analysis they intend to perform.",
+    "not_claimed": [
+      "A universal data-quality score",
+      "A complete administrative or commercial portfolio",
+      "An authoritative staff, grant-recipient, employment, or publication roster",
+      "Causal funding impact",
+      "Automatic identity certainty",
+      "Certification that an external system is ready to receive the data"
+    ]
+  },
+  "cross_view_behaviour": {
+    "source_system": "OpenAlex API",
+    "default_corpus": "OpenAlex core Works unless a tab states otherwise",
+    "time_scope": "User-selected complete calendar years; the current year can be included and is labelled partial. Researcher views cover the complete recorded career.",
+    "snapshot_model": "Aggregate results are saved with retrieval date, scope, implementation version, and query provenance. Record lists are separate live lookups and may have changed.",
+    "shared_controls": [
+      "Entity search and identifier confirmation",
+      "Explicit period selection for institution, funder, source, and publisher views; researcher views deliberately use the complete recorded career",
+      "Saved snapshots",
+      "Scope & methods drawer",
+      "Use-specific readiness review",
+      "PDF, Excel, CSV, and JSON export",
+      "Live record inspection and visible-record CSV export where supported"
+    ],
+    "shared_interpretation_rules": [
+      "Missing metadata means no assertion is recorded in the snapshot, not that the underlying fact is absent.",
+      "Counts use whole Works unless another denominator is displayed.",
+      "Institution and country groups can overlap because a Work can contain several affiliations.",
+      "Subject percentages use classified Works where stated; unclassified Works are shown separately.",
+      "OpenAlex records and links change over time.",
+      "Ranked lists are not statistical samples unless explicitly described as sampled.",
+      "Bar length may be scaled to the largest displayed share; printed counts and percentages are authoritative."
+    ]
+  },
+  "views": {
+    "institution": {
+      "label": "Research organisation",
+      "entity": "OpenAlex Institution, normally confirmed with ROR when available",
+      "population": "Core Works in the selected period linked to the selected institution under the report's affiliation scope.",
+      "tabs": [
+        {
+          "id": "output",
+          "label": "Overview",
+          "purpose": "Summarise the represented output and its change over time.",
+          "information": ["Eligible Works", "Classified and unclassified Works", "Works by year", "Work-type mix by year", "Field mix by year", "Headline coverage and readiness signals"],
+          "drill_downs": ["Works for selected years or categories", "Coverage summaries link to the dedicated Coverage gaps and Funding tabs"],
+          "caveats": ["Counts reflect the OpenAlex institution mapping, not an independently verified institutional publication list."]
+        },
+        {
+          "id": "metadata-patterns",
+          "label": "Coverage gaps",
+          "purpose": "Locate missing metadata and determine whether gaps concentrate in particular years, fields, sources, or work types.",
+          "information": ["Abstract coverage", "DOI coverage", "Primary-source coverage", "Primary-Topic coverage", "Coverage by year", "Lowest-coverage Fields", "Lowest-coverage sources", "Missing Topic by work type", "Missing Topic by source"],
+          "drill_downs": ["Works missing DOI", "Works missing abstract", "Works missing primary source", "Works missing primary Topic"],
+          "caveats": ["A missing field in OpenAlex does not prove the source record lacks it.", "The newest year may be partial or less mature."]
+        },
+        {
+          "id": "subjects-types",
+          "label": "Subjects",
+          "purpose": "Show how OpenAlex classifies the institution's represented Works.",
+          "information": ["Domains", "Fields", "Subfields", "Topics", "Sustainable Development Goal predictions", "Unclassified Work count"],
+          "denominators": ["Subject percentages use Works with a primary Topic.", "SDG tags overlap and do not sum to 100%."],
+          "drill_downs": ["Select a displayed Domain, Field, Subfield, Topic, or SDG to inspect supporting Works"],
+          "caveats": ["OpenAlex assigns one primary Topic to a classified Work.", "SDGs are model predictions based on titles and abstracts.", "Only leading groups are displayed."]
+        },
+        {
+          "id": "outputs-access",
+          "label": "Outputs & access",
+          "purpose": "Assess whether publication formats and access metadata support output- or access-focused analysis.",
+          "information": ["Work types", "Work-type history", "Open-access status", "Open-access history"],
+          "caveats": ["Work type is a format description, not a quality category.", "Open-access status is a changing database assertion."]
+        },
+        {
+          "id": "citations",
+          "label": "Citations",
+          "purpose": "Show citation-link coverage and normalized citation flags recorded by OpenAlex.",
+          "information": ["Cited at least once", "Uncited in OpenAlex", "Top-10% flag", "Top-1% flag", "Top-10% share by publication year"],
+          "caveats": ["These are database signals, not an institutional ranking.", "Citation links and percentile flags change over time."]
+        },
+        {
+          "id": "venues",
+          "label": "Sources & versions",
+          "purpose": "Show where represented output appears and whether submitted and published versions are linked.",
+          "information": ["Leading primary sources", "Leading publishers", "Source types", "Submitted and published locations", "Version-pair evidence"],
+          "drill_downs": ["Works in a selected source", "Works for a selected publisher or version pattern"],
+          "caveats": ["Leading lists are not complete inventories.", "A Source can be a journal, repository, conference series, book series, or platform."]
+        },
+        {
+          "id": "collaboration",
+          "label": "Collaboration",
+          "purpose": "Show institutions and countries co-occurring on the same represented Works.",
+          "information": ["Leading institutions", "Leading countries", "Domestic/international context", "Home-country count"],
+          "drill_downs": ["Shared Works for a selected institution or country"],
+          "caveats": ["Counts overlap.", "Co-occurrence is not partnership strength, contribution, or impact.", "Country comes from recorded institution metadata."]
+        },
+        {
+          "id": "funding",
+          "label": "Funding",
+          "purpose": "Separate direct Awards naming the institution from Work-level funding acknowledgements.",
+          "information": ["Award records naming this institution as recipient", "Funders linked on Works", "Award and funder record details where available"],
+          "caveats": ["A Work-level funding link does not identify which co-authoring institution received the Award.", "Direct Award records and Work acknowledgements are different populations."]
+        },
+        {
+          "id": "researchers",
+          "label": "Researchers",
+          "purpose": "Provide recognisable profiles for a plausibility check of institutional discoverability.",
+          "information": ["Researchers whose latest known OpenAlex institution is the selected institution", "Leading recent profiles", "Recent output counts"],
+          "caveats": ["Not a staff roster.", "Not a performance ranking.", "Profile identity and affiliation history may be incomplete or incorrect."]
+        },
+        {
+          "id": "affiliations",
+          "label": "Affiliations",
+          "purpose": "Audit published affiliation strings that map, or might plausibly have failed to map, to the institution.",
+          "information": ["Currently mapped raw affiliation strings", "Possible missed name matches", "Country inconsistencies", "Associated institutions"],
+          "caveats": ["Name-compatible strings require human validation.", "Possible matches are not automatically reassigned."]
+        },
+        {
+          "id": "institution-record",
+          "label": "Institution record",
+          "purpose": "Expose the OpenAlex entity used to define the snapshot.",
+          "information": ["OpenAlex ID", "Display name", "ROR", "Country", "Type", "Homepage and other source assertions"],
+          "caveats": ["These are source assertions, not details inferred by Pharos."]
+        }
+      ]
+    },
+    "researcher": {
+      "label": "Individual researcher",
+      "entity": "OpenAlex Author profile, optionally confirmed with ORCID",
+      "population": "All Works assigned to the selected Author profile across its complete recorded career.",
+      "tabs": [
+        {
+          "id": "researcher-identity-panel",
+          "label": "Identity",
+          "purpose": "Determine whether the profile appears to represent the intended person before analysing it.",
+          "information": ["OpenAlex display and full names", "Profile ORCID", "Work-level ORCID assertions", "Names printed on Works", "Frequent co-author network", "Core Work count", "Exact-ORCID coverage"],
+          "drill_downs": ["Works using a selected author-name variant", "Works shared with a selected co-author"],
+          "caveats": ["OpenAlex Author profiles are algorithmically resolved and can merge several people or split one person.", "Compatible names are supporting evidence, not identity proof."]
+        },
+        {
+          "id": "researcher-profile-panel",
+          "label": "Career evidence",
+          "purpose": "Assess the profile's longitudinal shape and the metadata available for common analyses.",
+          "information": ["Career output by year", "Field history", "SDG history", "Work-type history", "Open-access history", "Citation links", "Affiliation history", "Funding links on authored Works"],
+          "nested_sections": {
+            "access_and_citations": ["Open-access status by year", "Cited, top-10%, and top-1% signals"],
+            "affiliations": ["Institutions and years derived from Works assigned to this profile"],
+            "funding": ["Award or funder links occurring on Works authored by the profile"]
+          },
+          "caveats": ["Affiliation history is not an ORCID employment record.", "Funding on a co-authored Work does not establish that this researcher received or led the Award.", "SDG tags are predictions and can overlap.", "Citation signals are not a peer comparison."]
+        },
+        {
+          "id": "researcher-resolution-panel",
+          "label": "Merge / split review",
+          "purpose": "Explain deterministic evidence that may justify human review of the Author profile.",
+          "information": ["Split recommendation", "Identity partitions proposed from incompatible evidence", "Name, ORCID, affiliation, field, and co-author signals", "Merge candidates with compatible names and at least two overlap signals", "Rule-based explanation"],
+          "drill_downs": ["Inspect Works assigned to a proposed identity", "Inspect outlier, unassigned, or excluded Works", "Inspect overlap evidence listed for merge candidates"],
+          "caveats": ["Pharos does not automatically merge or split OpenAlex profiles.", "Recommendations are review aids, not identity adjudications."]
+        }
+      ]
+    },
+    "funder": {
+      "label": "Funder",
+      "entity": "OpenAlex Funder, normally confirmed with Crossref Funder ID when available",
+      "population": "Core Works in the selected period carrying recorded funding metadata for the selected funder or one of its Awards. Direct Award aggregates can cover all recorded Award years.",
+      "tabs": [
+        {
+          "id": "funder-overview-panel",
+          "label": "Evidence overview",
+          "purpose": "Show how OpenAlex represents the selected funder and separate direct Award evidence from Work-level funding evidence.",
+          "information": ["Selected-funder label", "Award records represented", "Awards with a positive amount", "Linked publications represented", "DOI coverage for matching/export", "Abstract coverage for theme analysis", "Open-access-status coverage"],
+          "caveats": ["Direct Awards and Work-level acknowledgements are distinct traces.", "Neither trace is a complete administrative portfolio.", "Work links do not assign recipient, investigator, or administering roles."]
+        },
+        {
+          "id": "funder-awards-panel",
+          "label": "Award records",
+          "purpose": "Inspect direct Award records and the fields OpenAlex has actually received.",
+          "information": ["Award start-year distribution", "Currency distribution for Awards with positive amounts", "Largest Awards with recorded amounts", "Awards linked to the most publications", "Award identifier", "Title", "Description preview and word count", "Amount and currency", "Dates", "Funding type and scheme", "Lead investigator", "Recipient institution", "Linked-output count", "Provenance and landing page"],
+          "display_rules": ["Description preview is limited to 42 words and can be expanded.", "Chart headings state Start year, Bar vs largest share, Share, and Awards.", "Printed values are authoritative; bars are scaled within the displayed chart."],
+          "caveats": ["Ranked record views are not samples and are not used to estimate field completeness.", "Blank fields mean OpenAlex has not supplied that assertion for the record.", "Award-year scope is independent of the selected Work-level period."]
+        },
+        {
+          "id": "funder-subjects-panel",
+          "label": "Research themes",
+          "purpose": "Show classifications of publications linked to the selected funder.",
+          "information": ["Domains", "Fields", "Subfields", "Topics", "SDG predictions"],
+          "caveats": ["These classify linked Works, not Award records.", "SDG tags overlap and are predictions."]
+        },
+        {
+          "id": "funder-institutions-panel",
+          "label": "Institutions",
+          "purpose": "Show affiliation coverage and leading affiliated institutions on linked Works.",
+          "information": ["Affiliation coverage by publication year", "Leading affiliated institution by year", "Linked-Work count by year", "Leading affiliations over the selected period"],
+          "caveats": ["Authorship affiliations are not Award recipients, investigators, administrators, or funding totals.", "Institution counts overlap when a Work has several affiliations."]
+        },
+        {
+          "id": "funder-outputs-panel",
+          "label": "Outputs",
+          "purpose": "Show the volume and publication formats of Works carrying funding links.",
+          "information": ["Linked Works by publication year", "Publication types"],
+          "drill_downs": ["Linked publication records"],
+          "caveats": ["The link does not identify the author or institution that received or administered an Award."]
+        },
+        {
+          "id": "funder-access-panel",
+          "label": "Access",
+          "purpose": "Assess open-access status on linked publications.",
+          "information": ["Open-access-status history"],
+          "caveats": ["Access status does not establish a funder policy requirement or compliance decision."]
+        },
+        {
+          "id": "funder-citations-panel",
+          "label": "Citations",
+          "purpose": "Show citation links and normalized flags for linked publications.",
+          "information": ["Cited at least once", "Top-10% flag", "Top-1% flag"],
+          "caveats": ["Not a measure of Award quality, programme performance, causal impact, or funding return."]
+        },
+        {
+          "id": "funder-global-panel",
+          "label": "Global context",
+          "purpose": "Place the selected-funder view beside global OpenAlex funding coverage without mixing the two scopes.",
+          "information": ["Exact total Funders with at least one Award record", "Exact total Funders with at least one linked publication", "All Award records", "All publications with a funding link", "Countries of Funders with Award records", "Countries of Funders with linked publications", "Countries asserted for Award recipient institutions", "Annual Award-record volume for the selected period", "Annual linked-publication volume for the selected period"],
+          "denominators": ["Funder-country shares use the corresponding exact Funder total.", "Recipient-country shares use all Award records, so missing recipient-country assertions remain visible as an unaccounted remainder.", "Annual shares use records within the selected year range."],
+          "known_unavailable_measure": "Exact distinct Funders by year. OpenAlex grouped results are truncated at 200 and the Funder endpoint cannot filter through Award start year or Work publication year.",
+          "caveats": ["Global context is not about the selected funder.", "Funder country is the awarding side.", "Award recipient country uses an institution explicitly asserted on an Award.", "Author-affiliation country on a linked publication is not relabelled as country awarded."]
+        },
+        {
+          "id": "funder-record-panel",
+          "label": "Funder record",
+          "purpose": "Expose the OpenAlex entity used to define the view.",
+          "information": ["OpenAlex Funder ID", "Crossref Funder ID", "DOI", "ROR", "Country", "Description", "Homepage", "Alternate titles", "OpenAlex Award count", "OpenAlex Work count"],
+          "caveats": ["Entity metadata is an OpenAlex source assertion."]
+        }
+      ]
+    },
+    "source": {
+      "label": "Journal or source",
+      "entity": "OpenAlex Source, normally confirmed with ISSN-L or OpenAlex ID",
+      "population": "Core Works in the selected period whose primary location is the selected Source.",
+      "tabs": [
+        {"id": "source-overview-panel", "label": "Overview", "purpose": "Summarise represented output and format over time.", "information": ["Core Works", "DOI coverage", "Abstract coverage", "Open access", "Works by year", "Work types"], "caveats": ["Primary-location scope excludes Works where the Source appears only in another location."]},
+        {"id": "source-subjects-panel", "label": "Subjects", "purpose": "Show how OpenAlex classifies Works primarily located in the Source.", "information": ["Domains", "Fields", "Subfields", "Topics", "SDG predictions"], "caveats": ["SDGs are predictions and overlap."]},
+        {"id": "source-institutions-panel", "label": "Institutions", "purpose": "Show leading authorship affiliations on Works whose primary location is the Source.", "information": ["Leading recorded institutions"], "caveats": ["Not a subscriber list, complete institutional inventory, or performance ranking.", "Counts overlap."]},
+        {"id": "source-funding-panel", "label": "Funding", "purpose": "Show funders linked on Works whose primary location is the Source.", "information": ["Leading recorded funders"], "caveats": ["Work-level links do not identify which author or institution received or administered an Award.", "Missing links do not prove a Work was unfunded."]},
+        {"id": "source-access-panel", "label": "Open access", "purpose": "Show open-access status over time.", "information": ["Open-access-status history"], "caveats": ["Open-access metadata and locations change over time."]},
+        {"id": "source-citations-panel", "label": "Citations", "purpose": "Show citation-link and normalized percentile signals.", "information": ["Cited at least once", "Top-10% flag", "Top-1% flag"], "caveats": ["Not a journal ranking or quality judgement."]},
+        {"id": "source-record-panel", "label": "Source record", "purpose": "Expose how OpenAlex identifies the Source.", "information": ["OpenAlex ID", "Display name", "Source type", "ISSN-L", "ISSNs", "Host organisation", "Homepage and related identifiers"], "caveats": ["A Source may be a journal, repository, conference series, book series, or platform; type and identifiers must be checked before treating it as a journal."]}
+      ]
+    },
+    "publisher": {
+      "label": "Publisher",
+      "entity": "OpenAlex Publisher",
+      "population": "Core Works in the selected period whose primary Source belongs to the selected Publisher lineage.",
+      "tabs": [
+        {"id": "publisher-overview-panel", "label": "Overview", "purpose": "Summarise output represented through the Publisher lineage.", "information": ["Core Works", "DOI coverage", "Abstract coverage", "Open access", "Works by year", "Work types"], "caveats": ["Lineage can contain recorded imprints and subsidiaries and is not a commercial portfolio."]},
+        {"id": "publisher-sources-panel", "label": "Sources", "purpose": "Show leading primary Sources assigned to the Publisher lineage.", "information": ["Leading journals and other Sources"], "caveats": ["Leading groups are not a complete title inventory.", "OpenAlex Source types are heterogeneous."]},
+        {"id": "publisher-institutions-panel", "label": "Institutions", "purpose": "Show leading authorship affiliations on Works in the Publisher lineage.", "information": ["Leading recorded institutions"], "caveats": ["Not evidence of contracts, subscriptions, customers, ownership, or institutional performance.", "Counts overlap."]},
+        {"id": "publisher-subjects-panel", "label": "Subjects", "purpose": "Show the Fields and SDG predictions of Works in the lineage.", "information": ["Fields", "SDG predictions"], "caveats": ["SDGs overlap and are model predictions."]},
+        {"id": "publisher-access-panel", "label": "Open access", "purpose": "Show access status across the Publisher lineage over time.", "information": ["Open-access-status history"], "caveats": ["Not a publisher-policy or compliance measure."]},
+        {"id": "publisher-citations-panel", "label": "Citations", "purpose": "Show citation-link and normalized percentile signals for represented Works.", "information": ["Cited at least once", "Top-10% flag", "Top-1% flag"], "caveats": ["Not a publisher ranking, market comparison, or quality judgement."]},
+        {"id": "publisher-record-panel", "label": "Publisher record", "purpose": "Expose the OpenAlex Publisher entity and lineage used for scope.", "information": ["OpenAlex ID", "Display name", "Country codes", "Hierarchy level", "Lineage", "Alternate titles", "Homepage and related identifiers"], "caveats": ["OpenAlex lineage is not guaranteed to match current legal ownership or a complete commercial portfolio."]}
+      ]
+    }
+  },
+  "cross_view_methodology_panel": {
+    "available_on": ["institution", "researcher", "funder", "source", "publisher"],
+    "content": ["Entity and population definition", "Period and partial-year status", "Corpus", "Retrieval date", "Saved versus live evidence", "Denominators", "Missing-data interpretation", "Tab-specific provenance", "Known limitations", "Implementation version and reproducibility context"]
+  },
+  "readiness_review": {
+    "purpose": "Evaluate the saved evidence against requirements for a stated use without collapsing it into one general quality score.",
+    "supported_use_families": ["Reporting", "Bibliometric analysis", "Funding evidence", "Researcher identity", "Open-access analysis", "Interoperability assessment", "General assessment"],
+    "statuses": ["Ready", "Ready with limitations", "Validation needed", "Not supported"],
+    "limitations": ["Readiness is use-specific and rule-based.", "Case-level, policy, identity, and external-system claims can still require human or external validation."]
+  }
+}

@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="See how OpenAlex covers your research organisation.">
-<title>Pharos · Coverage report</title>
+<title>Pharos · OpenAlex evidence views</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <script>if(location.protocol==='file:')location.replace('http://127.0.0.1:8765/')</script>
 <link rel="stylesheet" href="/style.css">
 <script src="/app.js" defer>
@@ -16,33 +17,34 @@
 <span class="mark">◒</span> PHAROS</a>
 <span class="tagline report-only">See how OpenAlex sees your research.</span>
 <nav class="landing-nav landing-only" aria-label="About Pharos"><a href="#why-pharos">Why check?</a><a href="#how-pharos-works">How it works</a><a href="#who-pharos-is-for">Who it’s for</a><a href="#landing-methodology">Methodology</a></nav>
-<a class="landing-open landing-only" href="#report-builder">Open a report</a>
+<a class="landing-open landing-only" href="#report-builder">Open a view</a>
 <span class="local report-only">
 <i>
 </i> <span id="runtime-label">Local workspace</span></span>
 </header>
 <main id="publisher-portrait" class="shell" hidden>
-<div class="portrait-heading"><div><div class="step">OpenAlex publisher report</div><h2 id="publisher-name"></h2><p id="publisher-identity" class="muted"></p></div><button id="new-publisher-report" class="secondary">New report</button></div>
+<div class="portrait-heading"><div><div class="step">OpenAlex publisher view</div><h2 id="publisher-name"></h2><p id="publisher-identity" class="muted"></p></div><button id="new-publisher-report" class="secondary">New view</button></div>
 <div class="subline"><span id="publisher-level" class="pill"></span><span id="publisher-period" class="pill"></span><span class="pill">Saved snapshot</span><span id="publisher-retrieval" class="muted small"></span></div>
 <p id="publisher-warning" class="guidance"></p>
-<nav class="section-tabs segmented" aria-label="Publisher report sections"><button data-publisher-section="publisher-overview-panel" aria-pressed="true">Overview</button><button data-publisher-section="publisher-sources-panel">Sources</button><button data-publisher-section="publisher-subjects-panel">Subjects</button><button data-publisher-section="publisher-access-panel">Open access</button><button data-publisher-section="publisher-citations-panel">Citations</button><button data-publisher-section="publisher-record-panel">Publisher record</button></nav>
+<nav class="section-tabs segmented" aria-label="Publisher view sections"><button data-publisher-section="publisher-overview-panel" aria-pressed="true">Overview</button><button data-publisher-section="publisher-sources-panel">Sources</button><button data-publisher-section="publisher-institutions-panel">Institutions</button><button data-publisher-section="publisher-subjects-panel">Subjects</button><button data-publisher-section="publisher-access-panel">Open access</button><button data-publisher-section="publisher-citations-panel">Citations</button><button data-publisher-section="publisher-record-panel">Publisher record</button></nav>
 <section id="publisher-overview-panel" class="panel publisher-panel"><div id="publisher-headline" class="researcher-summary-grid"></div><h3>Works through time</h3><div id="publisher-annual" class="researcher-career trend-chart"></div><h3>Work types</h3><div id="publisher-types"></div></section>
 <section id="publisher-sources-panel" class="panel publisher-panel" hidden><h3>Leading journals and sources</h3><p class="guidance">These are primary sources in the selected publisher lineage. The returned list is leading groups, not a complete title inventory.</p><div id="publisher-sources"></div></section>
+<section id="publisher-institutions-panel" class="panel publisher-panel" hidden><h3>Institutions on Works in this lineage</h3><p class="guidance">These are authorship affiliations on Works whose primary Source belongs to this publisher lineage. They show who appears in the indexed output, not contracts, subscriptions, customers, ownership, or institutional performance. Counts overlap.</p><div id="publisher-institutions"></div></section>
 <section id="publisher-subjects-panel" class="panel publisher-panel" hidden><div class="two-column"><div><h3>Fields</h3><div id="publisher-subjects"></div></div><div><h3>Sustainable Development Goal tags</h3><p class="small muted">OpenAlex predictions from titles and abstracts; one work can have several tags.</p><div id="publisher-sdgs"></div></div></div></section>
 <section id="publisher-access-panel" class="panel publisher-panel" hidden><h3>Open access through time</h3><div id="publisher-oa-trend" class="bumped-chart"></div></section>
-<section id="publisher-citations-panel" class="panel publisher-panel" hidden><h3>Citation links</h3><div id="publisher-citations" class="researcher-summary-grid"></div></section>
+<section id="publisher-citations-panel" class="panel publisher-panel" hidden><h3>Citation links</h3><div id="publisher-citations" class="researcher-summary-grid"></div><p class="small muted citation-reference-note"></p></section>
 <section id="publisher-record-panel" class="panel publisher-panel" hidden><h3>How OpenAlex identifies this publisher</h3><div id="publisher-record"></div></section>
 </main>
 <main id="funder-portrait" class="shell" hidden>
 <div class="portrait-heading">
 <div>
-<div class="step">OpenAlex funder report</div>
+<div class="step">OpenAlex funder view</div>
 <h2 id="funder-name">
 </h2>
 <p id="funder-identity" class="muted">
 </p>
 </div>
-<button id="new-funder-report" class="secondary">New report</button>
+<button id="new-funder-report" class="secondary">New view</button>
 </div>
 <div class="subline">
 <span id="funder-country" class="pill">
@@ -54,26 +56,27 @@
 </div>
 <p id="funder-warning" class="guidance">
 </p>
-<nav class="section-tabs" aria-label="Funder report sections">
-<button data-funder-section="funder-overview-panel" aria-pressed="true">Award overview</button>
+<nav class="section-tabs" aria-label="Funder view sections">
+<button data-funder-section="funder-overview-panel" aria-pressed="true">Evidence overview</button>
+<button data-funder-section="funder-awards-panel">Award records</button>
 <button data-funder-section="funder-subjects-panel">Research themes</button>
-<button data-funder-section="funder-access-panel">Linked publications</button>
+<button data-funder-section="funder-institutions-panel">Institutions</button>
+<button data-funder-section="funder-outputs-panel">Outputs</button>
+<button data-funder-section="funder-access-panel">Access</button>
+<button data-funder-section="funder-citations-panel">Citations</button>
+<button data-funder-section="funder-global-panel">Global context</button>
 <button data-funder-section="funder-record-panel">Funder record</button>
 </nav>
 <section id="funder-overview-panel" class="panel funder-panel">
-<div id="funder-headline" class="researcher-summary-grid">
+<div id="funder-headline" hidden></div>
+<div class="funder-context-heading"><p class="evidence-kicker">Selected funder</p><h3 id="funder-selected-context"></h3><p class="muted">Everything in the two evidence columns below describes this funder, not all funders in OpenAlex.</p></div>
+<div class="funder-evidence-grid">
+<section class="funder-evidence-family direct"><p class="evidence-kicker">Direct evidence · OpenAlex Awards</p><h3>What Award records contain</h3><p>OpenAlex receives Award details from its data providers. An individual record may name an investigator or recipient institution, state an amount or dates, and link resulting publications. If a field is blank, OpenAlex has not supplied it for that record. The ranked lists are not used to estimate how complete these details are across all Awards.</p><div id="funder-award-summary" class="researcher-summary-grid"></div><button class="text-button" data-funder-jump="funder-awards-panel">Inspect Award records →</button></section>
+<section class="funder-evidence-family indirect"><p class="evidence-kicker">Work-level evidence · OpenAlex Works</p><h3>What the linked publications can support</h3><p>OpenAlex links these publications to this funder or one of its Awards. Within the coverage shown below, they can support analyses of output over time, research themes, institutions named on papers, open access, and citations. The link does not identify which author or institution received or administered the Award.</p><div id="funder-work-summary" class="researcher-summary-grid"></div><button class="text-button" data-funder-jump="funder-outputs-panel">Inspect linked outputs →</button></section>
 </div>
-<p class="guidance">Direct Award records describe grants. Their investigator, institution, amount, and publication links are present only when an upstream source supplied them. Work-level funding acknowledgements are an indirect trace and do not prove that every author or affiliation on the Work received the grant.</p>
-<h3>Awards by recorded start year</h3>
-<div id="funder-award-years">
-</div>
-<p id="funder-award-year-note" class="footnote"></p>
-<h3>Currencies on Awards with a positive recorded amount</h3>
-<div id="funder-currencies">
-</div>
-<h3>Linkage fields in the displayed Award samples</h3>
-<div id="funder-linkage" class="researcher-summary-grid">
-</div>
+</section>
+<section id="funder-awards-panel" class="panel funder-panel" hidden>
+<h3>Direct Award records</h3><p id="funder-awards-summary" class="guidance"></p><p class="footnote">The comparison bars are scaled to the largest value shown. Use the printed Share and Awards columns for the exact values.</p><div class="funder-award-profile"><div><h4>Recent recorded start years</h4><div id="funder-award-years"></div><details class="funder-complete-years"><summary>Show all recorded start years</summary><div id="funder-award-years-all"></div></details><p id="funder-award-year-note" class="footnote"></p></div><div><h4>Currencies on Awards with a positive amount</h4><div id="funder-currencies"></div><p class="footnote">The Award lists below are ranked record views. They are not statistical samples and are not used to estimate field completeness.</p></div></div><div id="funder-linkage" hidden></div><div id="funder-awards"></div>
 </section>
 <section id="funder-subjects-panel" class="panel funder-panel" hidden>
 <p class="guidance">These classifications describe publications linked to this funder, not the Award records themselves. OpenAlex classifies Works from broad Domains through Fields and Subfields to detailed Topics.</p>
@@ -93,23 +96,44 @@
 <h3>Sustainable Development Goal tags</h3>
 <p class="small muted">Predictions on linked publications from titles and abstracts; one Work can have several tags.</p>
 <div id="funder-sdgs"></div>
+</section>
+<section id="funder-institutions-panel" class="panel funder-panel" hidden>
+<h3>Institutions on linked Works</h3>
+<p class="guidance">These are authorship affiliations recorded on Works carrying a link to this funder or one of its Awards. They do not identify Award recipients, investigators, administrators, or the institutions receiving the most funding.</p>
+<div id="funder-institution-years" class="funder-year-evidence"></div>
 <h3>Institutions on linked works</h3>
-<p class="small muted">These are author affiliations, not a list of grant recipients or investigators.</p>
+<p class="small muted">Leading affiliations across the complete selected Work-level period. Counts overlap when a Work contains authors from several institutions.</p>
 <div id="funder-institutions">
 </div>
 </section>
-<section id="funder-access-panel" class="panel funder-panel" hidden>
-<p class="guidance">These are publications indirectly connected through recorded funding links. A publication link does not establish who received or administered the Award.</p>
-<h3>Linked publications through time</h3>
+<section id="funder-outputs-panel" class="panel funder-panel" hidden>
+<p class="guidance">These Works contain recorded funding metadata linking them to this funder or one of its Awards. The link does not assign recipient, investigator, or administering roles to the Work’s authors or their affiliated institutions.</p>
+<h3>Works with funding links through time</h3>
 <div id="funder-annual" class="researcher-career trend-chart"></div>
 <h3>Publication types</h3>
 <div id="funder-types"></div>
+</section>
+<section id="funder-access-panel" class="panel funder-panel" hidden>
+<p class="guidance">Access status describes the linked Works, not the Awards. It does not indicate a funder policy requirement or compliance decision.</p>
 <h3>Open access through time</h3>
 <div id="funder-oa-trend" class="bumped-chart">
 </div>
+</section>
+<section id="funder-citations-panel" class="panel funder-panel" hidden>
+<p class="guidance">Citation indicators describe links recorded for the selected Work-level population. They are not measures of Award quality, programme performance, or funding impact.</p>
 <h3>Citation links</h3>
 <div id="funder-citations" class="researcher-summary-grid">
 </div>
+<p class="small muted citation-reference-note"></p>
+</section>
+<section id="funder-global-panel" class="panel funder-panel" hidden>
+<p class="evidence-kicker">Across OpenAlex · all funders</p><h3>Global context</h3>
+<p class="guidance">These measures describe the OpenAlex funding landscape, not the selected funder. Totals count Funder entities. Annual charts count Award records and linked publications because the API does not expose an exact annual count of distinct funders.</p>
+<div id="funder-global-summary" class="researcher-summary-grid"></div>
+<div class="two-column funder-global-columns"><div><h4>Countries of funders with Award records</h4><p class="small muted">Country recorded on the Funder entity; this is the awarding side.</p><div id="global-award-funder-countries"></div></div><div><h4>Countries recorded for Award recipient institutions</h4><p class="small muted">Country on the recipient institution asserted in an Award record. Missing recipient countries remain outside the displayed groups.</p><div id="global-recipient-countries"></div></div></div>
+<div class="two-column funder-global-columns"><div><h4>Countries of funders with linked publications</h4><p class="small muted">Country recorded on the Funder entity; not the authors’ affiliation country.</p><div id="global-work-funder-countries"></div></div><div><h4>Annual Award-record volume</h4><div id="global-award-years"></div></div></div>
+<h4>Annual linked-publication volume</h4><div id="global-work-years"></div>
+<p class="footnote">OpenAlex does not provide an exact global “country awarded” measure for Work-level funding links. Author-affiliation countries are not treated as Award-recipient countries.</p>
 </section>
 <section id="funder-record-panel" class="panel funder-panel" hidden>
 <h3>How OpenAlex identifies this funder</h3>
@@ -120,13 +144,13 @@
 <main id="source-portrait" class="shell" hidden>
 <div class="portrait-heading">
 <div>
-<div class="step">OpenAlex journal / source report</div>
+<div class="step">OpenAlex journal / source view</div>
 <h2 id="source-name">
 </h2>
 <p id="source-identity" class="muted">
 </p>
 </div>
-<button id="new-source-report" class="secondary">New report</button>
+<button id="new-source-report" class="secondary">New view</button>
 </div>
 <div class="subline">
 <span id="source-type" class="pill">
@@ -138,9 +162,11 @@
 </div>
 <p id="source-warning" class="guidance">
 </p>
-<nav id="source-tabs" class="section-tabs" aria-label="Source report sections">
+<nav id="source-tabs" class="section-tabs" aria-label="Source view sections">
 <button data-source-section="source-overview-panel" aria-pressed="true">Overview</button>
 <button data-source-section="source-subjects-panel">Subjects</button>
+<button data-source-section="source-institutions-panel">Institutions</button>
+<button data-source-section="source-funding-panel">Funding</button>
 <button data-source-section="source-access-panel">Open access</button>
 <button data-source-section="source-citations-panel">Citations</button>
 <button data-source-section="source-record-panel">Source record</button>
@@ -158,11 +184,14 @@
 <section id="source-subjects-panel" class="panel source-panel" hidden>
 <div class="two-column">
 <div>
+<h3>Domains</h3><div id="source-domains"></div>
 <h3>Fields</h3>
 <div id="source-subjects">
 </div>
 </div>
 <div>
+<h3>Subfields</h3><div id="source-subfields"></div>
+<h3>Topics</h3><div id="source-topics"></div>
 <h3>Sustainable Development Goal tags</h3>
 <p class="small muted">OpenAlex predictions from titles and abstracts; one work can have several tags.</p>
 <div id="source-sdgs">
@@ -170,6 +199,8 @@
 </div>
 </div>
 </section>
+<section id="source-institutions-panel" class="panel source-panel" hidden><h3>Institutions on Works in this Source</h3><p class="guidance">These are authorship affiliations on Works whose primary location is this Source. They are not a subscriber list, an author-performance ranking, or a complete institutional inventory. Counts overlap.</p><div id="source-institutions"></div></section>
+<section id="source-funding-panel" class="panel source-panel" hidden><h3>Funders linked on Works in this Source</h3><p class="guidance">These are Work-level funding links. They do not establish that every author or affiliated institution received or administered an Award, and missing links do not establish that a Work was unfunded.</p><div id="source-funders"></div></section>
 <section id="source-access-panel" class="panel source-panel" hidden>
 <h3>Open access through time</h3>
 <div id="source-oa-trend" class="bumped-chart">
@@ -179,6 +210,7 @@
 <h3>Citation links</h3>
 <div id="source-citations" class="researcher-summary-grid">
 </div>
+<p class="small muted citation-reference-note"></p>
 </section>
 <section id="source-record-panel" class="panel source-panel" hidden>
 <h3>How OpenAlex identifies this source</h3>
@@ -189,10 +221,21 @@
 <main class="shell">
 <div id="notice" class="notice" role="status" hidden>
 </div>
+<section id="build-state" class="build-state" role="status" aria-live="polite" hidden>
+<div class="build-state-card">
+<span class="build-state-mark" aria-hidden="true"></span>
+<div>
+<p class="step">OPENALEX RETRIEVAL IN PROGRESS</p>
+<h2 id="build-state-title">Building view</h2>
+<p id="build-state-message">Preparing the saved Snapshot…</p>
+<p class="small muted">Keep this page open. Pharos will open the view automatically when the Snapshot is ready.</p>
+</div>
+</div>
+</section>
 <section id="empty" class="start-page">
 <section class="landing-hero landing-only" aria-labelledby="landing-title">
 <div class="landing-beacon" aria-hidden="true">
-<svg viewBox="0 0 1180 610" preserveAspectRatio="xMaxYMax meet">
+<svg viewBox="0 0 1180 610" preserveAspectRatio="xMinYMax meet">
 <defs>
 <linearGradient id="pharos-beam" x1="1" y1=".56" x2="0" y2=".2"><stop offset="0" stop-color="#ffc85a" stop-opacity=".48"/><stop offset=".45" stop-color="#e9aa35" stop-opacity=".17"/><stop offset="1" stop-color="#e9aa35" stop-opacity="0"/></linearGradient>
 <radialGradient id="pharos-glow"><stop offset="0" stop-color="#ffd77d" stop-opacity=".92"/><stop offset=".24" stop-color="#e9aa35" stop-opacity=".42"/><stop offset="1" stop-color="#e9aa35" stop-opacity="0"/></radialGradient>
@@ -201,7 +244,7 @@
 </defs>
 <g class="beacon-stars" fill="#647293"><circle cx="150" cy="98" r="2"/><circle cx="248" cy="184" r="1.6"/><circle cx="352" cy="72" r="2.3"/><circle cx="438" cy="242" r="1.7"/><circle cx="548" cy="126" r="2"/><circle cx="662" cy="205" r="1.5"/><circle cx="764" cy="86" r="2.1"/><circle cx="862" cy="168" r="1.7"/><circle cx="1090" cy="92" r="1.8"/><circle cx="220" cy="340" r="1.4"/><circle cx="600" cy="330" r="1.8"/></g>
 <g class="beacon-signals" fill="#f0ad38"><circle cx="352" cy="72" r="3"/><circle cx="548" cy="126" r="2.6"/><circle cx="662" cy="205" r="2.4"/><circle cx="764" cy="86" r="2.8"/><circle cx="862" cy="168" r="2.5"/><circle cx="438" cy="242" r="2.3"/></g>
-<g class="beacon-left" transform="translate(1180 0) scale(-1 1)">
+<g class="beacon-left" transform="translate(950 90) scale(-.82 .82)">
 <path class="beacon-beam" d="M1001 229 C816 142 592 62 270 20 C474 172 693 266 1001 250 Z" fill="url(#pharos-beam)" filter="url(#pharos-soft)"/>
 <ellipse class="beacon-aura" cx="1001" cy="239" rx="150" ry="132" fill="url(#pharos-glow)"/>
 <g class="lighthouse"><path d="M950 548 L970 304 H1032 L1054 548 Z" fill="#e8e3d8"/><path d="M964 382 H1039 L1046 453 H958 Z" fill="#b66045"/><path d="M952 518 H1051 L1054 548 H950 Z" fill="#b66045"/><path d="M970 304 H1032 L1036 326 H966 Z" fill="#111a2c"/><rect x="965" y="275" width="73" height="14" rx="2" fill="#0a111e"/><path d="M975 275 V235 H1028 V275" fill="#18243a" stroke="#d6a64c" stroke-width="3"/><rect x="984" y="242" width="35" height="26" fill="#ffd36f"/><path d="M965 235 L1001 207 L1038 235 Z" fill="#070d18"/><circle cx="1001" cy="239" r="7" fill="#fff1b2"/><path d="M1001 207 V193" stroke="#d9dde6" stroke-width="3"/><circle cx="1001" cy="190" r="3" fill="#e9aa35"/><g fill="#15233a"><rect x="991" y="344" width="20" height="31" rx="10"/><rect x="991" y="473" width="20" height="34" rx="10"/></g></g>
@@ -212,16 +255,16 @@
 </div>
 <div class="landing-hero-copy">
 <p class="landing-kicker">Coverage checks for OpenAlex data</p>
-<h1 id="landing-title">Know what the number <em>leaves out.</em></h1>
-<p class="landing-lede">Pharos builds an inspectable OpenAlex report for an organisation, researcher, funder, journal, or publisher. Check the coverage, missing metadata, and evidence behind a figure before you use it.</p>
-<div class="landing-actions"><a class="landing-primary" href="#report-builder">Build a report</a><a href="#how-pharos-works">See how it works</a></div>
+<h1 id="landing-title">Inspect the gaps <em>behind the metadata.</em></h1>
+<p class="landing-lede">Pharos creates an inspectable view of an OpenAlex organisation, researcher, funder, journal, or publisher. Check its coverage, missing metadata, and the evidence behind each figure before deciding whether the data is fit for your purpose.</p>
+<div class="landing-actions"><a class="landing-primary" href="#report-builder">Open a view</a><a href="#how-pharos-works">See how it works</a></div>
 </div>
 <div class="landing-facts"><span><strong>Live retrieval</strong> from the OpenAlex API</span><span><strong>Saved aggregate snapshots</strong> with retrieval dates</span><span><strong>Record-level inspection</strong> when evidence needs checking</span></div>
 </section>
 <div id="report-builder" class="report-builder-anchor"></div>
-<div class="step">CREATE A COVERAGE REPORT</div>
-<h1>Build a coverage report</h1>
-<p class="lede">Choose the record and period you intend to analyse. Pharos keeps that scope visible throughout the report.</p>
+<div class="step">OPEN AN OPENALEX VIEW</div>
+<h1>Create a snapshot and open its view</h1>
+<p class="lede">Choose the record and period you intend to analyse. Pharos keeps that scope visible throughout the view and any later review report.</p>
 <form id="portrait-form" class="start-card">
 <fieldset>
 <legend>1 · Unit of interest</legend>
@@ -270,7 +313,7 @@
 </div>
 <p id="year-help" class="small muted">The default ends with the latest complete calendar year. Include the current year only when partial-year monitoring is useful.</p>
 </fieldset>
-<button class="primary confirm" id="build" type="submit" disabled>Build coverage report →</button>
+<button class="primary confirm" id="build" type="submit" disabled>Create snapshot and open view →</button>
 </form>
 <section id="session-key-panel" class="session-key" hidden>
 <div class="step">OPTIONAL OPENALEX ACCESS</div>
@@ -290,14 +333,14 @@
 </div>
           <section class="aside-note" aria-label="Session and storage information">
             <strong>Session and storage</strong>
-            <p>OpenAlex records are public. On the hosted service, your report choices and review notes are temporary and sessions may end when the service restarts. Download anything you need to retain.</p>
+            <p>OpenAlex records are public. On the hosted service, your view choices and review notes are temporary and sessions may end when the service restarts. Download anything you need to retain.</p>
             <p>No Pharos account is required. An optional OpenAlex API key is held only in server memory for the browser session.</p>
             <a href="mailto:helene.draux@gmail.com">Privacy or security contact</a>
           </section>
-<section id="why-pharos" class="landing-section landing-only"><p class="landing-kicker">Why check?</p><h2>Coverage determines what a metric can support</h2><div class="landing-columns"><article><span>01</span><h3>Coverage varies by question</h3><p>OpenAlex may represent some years, publishers, repositories, or work types better than others. The relevant gap depends on what you want to measure.</p></article><article><span>02</span><h3>OpenAlex changes over time</h3><p>Records and metadata are added, matched, and revised continuously. Seeing where the gaps sit—and when the snapshot was taken—helps you judge whether a result is usable and when to revisit it.</p></article><article><span>03</span><h3>Fitness depends on use</h3><p>A publication count, funding analysis, and researcher review need different evidence. Check the fields and identities your task depends on before deciding whether OpenAlex is sufficient.</p></article></div></section>
-<section id="how-pharos-works" class="landing-section landing-section-navy landing-only"><p class="landing-kicker">How it works</p><h2>One record, one explicit period, one inspectable snapshot</h2><div class="landing-steps"><article><b>1</b><h3>Choose the unit</h3><p>Organisation, researcher, funder, journal/source or publisher.</p></article><article><b>2</b><h3>Confirm the record</h3><p>Match the name and identifiers to the intended OpenAlex entity.</p></article><article><b>3</b><h3>Set the years</h3><p>Use complete calendar years for comparisons, or explicitly include the current partial year.</p></article></div></section>
-<section id="who-pharos-is-for" class="landing-section landing-only"><p class="landing-kicker">Who it’s for</p><h2>People who need to defend a research-data figure</h2><div class="landing-audiences"><article><h3>Research offices</h3><p>Check institutional totals before reporting or planning.</p></article><article><h3>Libraries and repositories</h3><p>Locate under-represented collections, sources, and affiliations.</p></article><article><h3>Bibliometric analysts</h3><p>Inspect coverage, denominators, and entity resolution before interpretation.</p></article><article><h3>Funders and publishers</h3><p>Review how linked awards, outputs, and source lineages appear in OpenAlex.</p></article></div></section>
-<section id="landing-methodology" class="landing-section landing-methodology landing-only"><div><p class="landing-kicker">Methodology</p><h2>Every report explains how its evidence was assembled</h2></div><p>Scope, retrieval dates, source populations, denominators, caveats, and tab-specific data provenance live together in the report’s Scope &amp; methods panel.</p><a href="#report-builder">Start with a record →</a></section>
+<section id="why-pharos" class="landing-section landing-only"><div class="landing-section-heading"><p class="landing-kicker">Why check?</p><h2>Coverage determines what a metric can support</h2></div><div class="landing-columns"><article><span>01</span><h3>Coverage varies by question</h3><p>OpenAlex may represent some years, publishers, repositories, or work types better than others. The relevant gap depends on what you want to measure.</p></article><article><span>02</span><h3>OpenAlex changes over time</h3><p>Records and metadata are added, matched, and revised continuously. Seeing where the gaps sit—and when the snapshot was taken—helps you judge whether a result is usable and when to revisit it.</p></article><article><span>03</span><h3>Fitness depends on use</h3><p>A publication count, funding analysis, and researcher review need different evidence. Check the fields and identities your task depends on before deciding whether OpenAlex is sufficient.</p></article></div></section>
+<section id="how-pharos-works" class="landing-section landing-section-navy landing-only"><div class="landing-section-heading"><p class="landing-kicker">How it works</p><h2>One record, one explicit period, one inspectable snapshot</h2></div><div class="landing-steps"><article><b>1</b><h3>Choose the unit</h3><p>Organisation, researcher, funder, journal/source or publisher.</p></article><article><b>2</b><h3>Confirm the record</h3><p>Match the name and identifiers to the intended OpenAlex entity.</p></article><article><b>3</b><h3>Set the years</h3><p>Use complete calendar years for comparisons, or explicitly include the current partial year.</p></article></div></section>
+<section id="who-pharos-is-for" class="landing-section landing-only"><div class="landing-section-heading"><p class="landing-kicker">Who it’s for</p><h2>People who need to defend a research-data figure</h2></div><div class="landing-audiences"><article><h3>Research offices</h3><p>Check institutional totals before reporting or planning.</p></article><article><h3>Libraries and repositories</h3><p>Locate under-represented collections, sources, and affiliations.</p></article><article><h3>Bibliometric analysts</h3><p>Inspect coverage, denominators, and entity resolution before interpretation.</p></article><article><h3>Funders and publishers</h3><p>Review how linked awards, outputs, and source lineages appear in OpenAlex.</p></article></div></section>
+<section id="landing-methodology" class="landing-section landing-methodology landing-only"><div><p class="landing-kicker">Methodology</p><h2>Every view explains how its evidence was assembled</h2></div><p>Scope, retrieval dates, source populations, denominators, caveats, and tab-specific data provenance live together in the view’s Scope &amp; methods panel and carry into the final review report.</p><a href="#report-builder">Start with a record →</a></section>
 </section>
 <section id="portrait" hidden>
 <div class="portrait-heading">
@@ -308,7 +351,7 @@
 <p id="identity-line" class="muted">
 </p>
 </div>
-<button id="new-report" class="secondary">New report</button>
+<button id="new-report" class="secondary">New view</button>
 </div>
 <div class="subline">
 <span id="period-label" class="pill">
@@ -332,13 +375,13 @@
 </section>
 <div id="summary-output">
 </div>
-<button id="explore-report" class="primary view-cta">Explore full report →</button>
+<button id="explore-report" class="primary view-cta">Explore the full view →</button>
 </div>
 <div id="explore-view" hidden>
 <div class="explore-tools">
 <button id="back-summary" class="secondary">← Summary</button>
 <div class="export-controls">
-<label for="export-format">Download report</label>
+<label for="export-format">Export snapshot</label>
 <div>
 <select id="export-format">
 <option value="pdf">PDF</option>
@@ -625,12 +668,12 @@
 </section>
 <section id="institution-record" class="panel">
 <h3>Institution record</h3>
-<p class="guidance">The OpenAlex organisation record used to define this report. These are source assertions, not details inferred by Pharos.</p>
+<p class="guidance">The OpenAlex organisation record used to define this snapshot. These are source assertions, not details inferred by Pharos.</p>
 <div id="institution-record-fields"></div>
 </section>
 <section id="researchers" class="panel">
 <h3>Recognisable active researchers</h3>
-<p class="guidance">Researchers whose latest known OpenAlex institution is this institution, ranked by their recent OpenAlex output. Use familiar names to check whether the institution is realistically discoverable; this is not a staff roster or performance ranking.</p>
+<p class="guidance">Researchers whose latest known OpenAlex institution is this institution, ranked by their recent OpenAlex output. “Latest known” is OpenAlex’s current profile assertion, derived from recorded affiliation evidence rather than an employment check; ties and incomplete recent Works can affect it. Use familiar names to check discoverability—this is not a staff roster or performance ranking.</p>
 <div id="researcher-summary" class="researcher-summary-grid">
 </div>
 <h3>Leading recent profiles</h3>
@@ -663,7 +706,7 @@
 </div>
 <div class="associated-block">
 <h3>Associated institutions</h3>
-<p>Parent, child, and related organisations recorded on the selected OpenAlex Institution. They are shown for context and are not added to this report’s work count.</p>
+<p>Parent, child, and related organisations recorded on the selected OpenAlex Institution. They are shown for context and are not added to this snapshot’s work count.</p>
 <div id="association-list">
 </div>
 </div>
@@ -674,13 +717,13 @@
 <main id="researcher-portrait" class="shell" hidden>
 <div class="portrait-heading">
 <div>
-<div class="step">OpenAlex researcher report</div>
+<div class="step">OpenAlex researcher view</div>
 <h2 id="researcher-name">
 </h2>
 <p id="researcher-identity" class="muted">
 </p>
 </div>
-<button id="new-researcher-report" class="secondary">New report</button>
+<button id="new-researcher-report" class="secondary">New view</button>
 </div>
 <div class="subline">
 <span id="researcher-period" class="pill">
@@ -692,7 +735,7 @@
 </div>
 <p id="researcher-warning" class="guidance">
 </p>
-<nav id="researcher-tabs" class="section-tabs" aria-label="Researcher report sections">
+<nav id="researcher-tabs" class="section-tabs" aria-label="Researcher view sections">
 <button data-researcher-section="researcher-identity-panel" aria-pressed="true">Identity</button>
 <button data-researcher-section="researcher-profile-panel">Career evidence</button>
 <button data-researcher-section="researcher-resolution-panel">Merge / split review</button>
@@ -712,7 +755,7 @@
 </div>
 <div>
 <h3>Frequent co-author network</h3>
-<p class="small muted">The selected profile sits at the centre. Recurring collaborators can help an expert recognise the person or spot a profile that combines several people.</p>
+<p class="small muted">The selected profile sits at the centre. Recurring collaborators can help an expert recognise the person or spot a profile that combines several people. If Merge / split review flags identity problems, this network may also contain collaborators belonging to a wrongly merged person.</p>
 <div id="researcher-coauthors">
 </div>
 </div>
@@ -795,7 +838,7 @@
 <h3>Citation links</h3>
 <div id="researcher-citations" class="researcher-summary-grid">
 </div>
-<p class="small muted">Citation counts describe links recorded by OpenAlex. They are not a peer comparison.</p>
+<p class="small muted citation-reference-note"></p>
 </div>
 </section>
 <section id="researcher-affiliations-panel" class="panel researcher-panel" hidden>
@@ -805,7 +848,7 @@
 </div>
 </section>
 <section id="researcher-funding-panel" class="panel researcher-panel" hidden>
-<h3>Grants—received or acknowledged</h3>
+<h3>Funding links on authored Works</h3>
 <p class="guidance">These grants occur on Works authored by this researcher with one or more co-authors. OpenAlex does not identify which author supplied the acknowledgement, so this is an indirect link to the researcher—not evidence that they received or led the grant. Some entries connect to richer, direct Award records that may separately name a lead investigator or recipient institution.</p>
 <div id="researcher-awards">
 </div>

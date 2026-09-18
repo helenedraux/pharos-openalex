@@ -1,6 +1,6 @@
 # Use-specific readiness reviews
 
-Pharos separates the OpenAlex object being viewed from the decision a user needs to make. A saved snapshot supplies dated evidence; a review compares that evidence with one or more intended uses; a report communicates the resulting readiness, limitations, and methodology; and a data package carries the underlying identifiers, scope, and provenance.
+Pharos separates the OpenAlex object being viewed from the decision a user needs to make. A **view** is the interactive exploration of an OpenAlex object. A **snapshot** is its dated, saved aggregate evidence for an explicit scope and period. A **review** evaluates that snapshot for one or more intended uses. A **report** is the human-readable output of the review and names those uses. A **data export** supplies the accompanying CSV, Excel, or JSON data. An **export package** brings the report, data export, scope, methodology, and provenance together.
 
 ## Current workflow
 
@@ -9,9 +9,9 @@ Pharos separates the OpenAlex object being viewed from the decision a user needs
 3. Compare the deduplicated evidence-by-use matrix. Each use receives a provisional readiness result: **Ready**, **Ready with limitations**, **Validation needed**, or **Not supported by this snapshot**.
 4. Inspect the observed value, configured requirement, OpenAlex's role, required external join, benchmark status, and evidence source for each row.
 5. Open a focused review when a human needs to record evidence, change a provisional status, or override a threshold or materiality.
-6. Download either a combined `pharos-readiness-matrix-v1` comparison or a detailed `pharos-review-record-v3` record.
+6. Download a human-readable PDF report for the intended use and the accompanying structured `pharos-review-record-v3` JSON data. A combined `pharos-readiness-matrix-v1` comparison remains available when several uses are being compared.
 
-The browser keeps an in-progress detailed review only in page memory. It is not added to the saved snapshot, server cache, canonical report export, or OpenAlex data. Users must download the review record if they want to retain their judgements.
+The browser keeps an in-progress detailed review only in page memory. It is not added to the saved snapshot, server cache, or OpenAlex data. Users must download the PDF report and/or structured JSON review data if they want to retain their judgements.
 
 ## Readiness model
 

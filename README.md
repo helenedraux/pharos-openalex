@@ -1,8 +1,8 @@
-# Pharos
+# Pharos v1
 
 **See how OpenAlex sees your research.**
 
-A local, open-source Python CLI that creates a descriptive institution portrait from OpenAlex. This repository implements the immediate institutional prototype milestone: exact ROR/OpenAlex ID resolution, dated corpus definitions, resource estimates, resumable retrieval, deterministic profiles, and portable exports.
+An open-source interface and Python CLI for inspecting how OpenAlex represents an organisation, researcher, funder, journal/source, or publisher. Pharos makes metadata coverage, gaps, provenance, and the evidence behind each figure inspectable before the data is used for analysis or reporting.
 
 Requires Python 3.11+ on macOS or Linux. No runtime dependencies. Install with `python3 -m pip install .`, or run from the checkout using `PYTHONPATH=src python3 -m pharos.cli`.
 
@@ -112,11 +112,11 @@ pharos-web --mode hosted --host 0.0.0.0 --port 7860 \
   --allowed-origin https://owner-name.hf.space
 ```
 
-Search for an institution, researcher, funder, journal/source, or publisher by name or supported identifier and confirm the matching OpenAlex record. Institution reports use a selected period; the other entity reports cover all years. Funder reports accept Crossref Funder IDs and OpenAlex Funder IDs and show available Award records; missing amounts, investigators, recipients, dates, and titles remain explicitly unknown. Publisher reports include works whose primary source belongs to the selected OpenAlex publisher lineage, including recorded imprints and subsidiaries. Neither view is a complete commercial or administrative portfolio. No LLM is involved.
+Search for an institution, researcher, funder, journal/source, or publisher by name or supported identifier and confirm the matching OpenAlex record. Pharos creates a dated snapshot and opens an interactive view of it. Institution snapshots use a selected period; the other entity snapshots cover all years. Funder views accept Crossref Funder IDs and OpenAlex Funder IDs and show available Award records; missing amounts, investigators, recipients, dates, and titles remain explicitly unknown. Publisher views include works whose primary source belongs to the selected OpenAlex publisher lineage, including recorded imprints and subsidiaries. Neither view is a complete commercial or administrative portfolio. No LLM is involved.
 
 The interface uses a separately labelled aggregate overview. It counts across the selected corpus without downloading every record, which makes a large institution usable without first configuring an API key. This is not a `pharos-profile-v1` complete record-level profile. Detailed missing-OA-assertion, authorship-resolution, and affiliation-observability measures are not claimed by the overview. Funding views distinguish funder links, award-linked works, and Awards that name the institution, while retaining OpenAlex's incompleteness caveat. Primary subject, DOI, abstract, and primary source coverage are displayed. A full download estimate points advanced users to the existing CLI.
 
-Completed reports also offer **Guide my review**, a deterministic, purpose-led checklist. Checklist items navigate to existing report evidence, and users may download a separate JSON review record containing their own status and notes. Optional model-assisted draft wording can be enabled with `PHAROS_SLM_ENDPOINT` and `PHAROS_SLM_MODEL`; it is visibly labelled, editable, provenance-recorded, and cannot set a review status or suitability verdict. Model assistance never alters report measures or canonical report exports. See `docs/REVIEW_GUIDE.md`.
+Every open view offers a use-specific **Review**. Checklist items navigate to snapshot evidence. A completed review can be exported as a human-readable PDF report that names its intended use, alongside structured JSON review data containing thresholds, evidence, statuses, notes, and provenance. Optional model-assisted draft wording can be enabled with `PHAROS_SLM_ENDPOINT` and `PHAROS_SLM_MODEL`; it is visibly labelled, editable, provenance-recorded, and cannot set a review status or suitability verdict. Model assistance never alters snapshot measures or data exports. See `docs/REVIEW_GUIDE.md`.
 
 Institution and source charts display leading returned groups, not exhaustive inventories. Institution and country counts are whole counts, can overlap, and are not rankings of research performance. Subject percentages use classified publications only. Source-qualified `unknown` keys are normalized before computing that denominator. The types panel retains all returned raw work types.
 
@@ -133,13 +133,14 @@ Sources and direct publishers can be viewed for any returned work type, includin
 
 The raw-affiliation panel uses a seeded 100-work sample within the selected corpus. It retains only exact raw strings whose per-string `institution_ids` mapping contains the target institution. Repeated authors on the same work do not inflate a string's count. Original spelling variants remain separate. Click a string to see its sampled works. The view is an exploratory coverage aid, not a complete inventory or ranking of core departments; unmatched works outside the institution corpus cannot be discovered from this sample. Sample coverage and missing per-string mappings are explicit.
 
-### Human-readable exports
+### Snapshot and review exports
 
-Choose **PDF report**, **Excel workbook (.xlsx)**, **CSV tables**, or **JSON with provenance** next to **Download**. Exporting uses the completed overview held by the local application; it does not rerun OpenAlex queries. If a specific work type is selected for sources/publishers, that view is included and labelled. Reopen a portrait after restarting the server before exporting it.
+The view can export its saved snapshot as PDF, Excel, CSV, or provenance-rich JSON without rerunning OpenAlex queries. Excel, CSV, and JSON are data exports; the snapshot PDF is a readable rendering of the saved evidence, not a use-specific review report. After reviewing the snapshot for an intended use, download the separate PDF report and structured JSON review data from the review panel.
 
 All formats include the same content-based export snapshot ID, institution, period, retrieval dates, and population definitions. This ID identifies the exported view, including the selected source work type; it is separate from the corpus hash. PDF displays leading entries where explicitly labelled, whereas CSV and Excel retain every returned table item. None claims to contain the full work corpus.
 
-- PDF is a paginated coverage report with a labelled annual line chart, counts, coverage, sources, sample affiliation examples, and methodology. It is generated from structured data rather than capturing the browser viewport.
+- Snapshot PDF is a paginated rendering of the saved evidence with a labelled annual line chart, counts, coverage, sources, sample affiliation examples, and methodology. It is generated from structured data rather than capturing the browser viewport.
+- Review PDF is the human-readable report. It names the intended use and records the snapshot scope, readiness result, evidence, thresholds, decisions, limitations, next actions, interoperability checks, and reviewer notes.
 - Excel contains Report, Measures, Sample works, and Queries sheets. Counts are numbers, dates are typed and formatted, and shares are formulas based on the corresponding numerator/denominator. Zero denominators display Unknown. Filters and frozen headers support browsing the long tables.
 - CSV is a UTF-8 file with a BOM for Excel, in a long-table layout. Shares are fractions (0.25 means 25%); count, denominator, population, period, snapshot ID, and notes accompany the rows. Provenance and method rows are explicitly labelled. Formula-leading source strings are escaped.
 - JSON retains the full structured overview and any selected source view.

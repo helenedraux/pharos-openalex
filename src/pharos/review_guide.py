@@ -29,7 +29,7 @@ BENCHMARKABLE = {
 }
 
 NEXT_STEPS = {
-    "common.scope": "Check the selected OpenAlex ID, affiliation rule, and years against the scope you intend to report.",
+    "common.scope": "Confirm the selected record, period, and population rule only where the intended scope is still uncertain.",
     "discovery.subjects": "Review unclassified Works and spot-check whether the leading subjects match the portfolio you expect.",
     "discovery.text": "Decide whether searches may omit Works without abstracts; lower the threshold only if title-and-subject searching is acceptable.",
     "discovery.people": "Compare a sample of OpenAlex researchers and affiliations with a current staff, ORCID, or repository list.",
@@ -47,7 +47,7 @@ NEXT_STEPS = {
     "analysis.citations": "Confirm that OpenAlex citation links, time window, and field normalisation match the indicator you intend to use.",
     "analysis.comparison": "Rebuild every comparison with the same entity definition, period, Work population, and Pharos version.",
     "funding.direct": "Compare recorded Awards with the institution's award or finance system, including recipient, investigator, amount, and dates.",
-    "funding.indirect": "Sample Work-level funding links and verify in acknowledgements or full text; do not infer which co-author received the Award.",
+    "funding.indirect": "Inspect Work-level funding links separately; the recorded link does not identify which co-author or affiliated institution received or administered the Award.",
     "funding.provenance": "Record which claims come from OpenAlex, Crossref, full text, and local award data, and retain unmatched cases.",
     "access.assertions": "Sample OpenAlex access statuses against the recorded URLs, licences, and accessible versions.",
     "access.locations": "Decide whether the use needs the Version of Record, an accepted manuscript, or any accessible copy, then inspect locations accordingly.",
@@ -85,7 +85,7 @@ def item(item_id, title, guidance, destination, refs, evidence="general", priori
             "destination": destination, "evidence_refs": refs, "evidence": evidence, "base_priority": priority}
 
 
-SCOPE = item("common.scope", "Verify the selected record and reporting scope", "Pharos can preserve the selected OpenAlex record, dates, and corpus rule, but it cannot know whether they match the question you intend to answer.", "institution-record", ("report:identity", "report:corpus"), priority=1,
+SCOPE = item("common.scope", "Confirm the report scope", "Check the selected OpenAlex record, period, and population rule if they are not already established by your brief or workflow.", "institution-record", ("report:identity", "report:corpus"), priority=3,
              requirement="The OpenAlex entity, reporting period, and population rule must match the intended analysis. This is a confirmation check, not a percentage threshold.",
              action="Check the OpenAlex ID and name, the start and end years, and the population or affiliation rule. Compare them with the brief, local system, or other source that defines the intended scope.",
              record="Confirm the selected entity and scope, or record the exact mismatch and rebuild the snapshot with the correct record or period.",
@@ -125,7 +125,7 @@ PURPOSES = {
         item("identity.resolution", "Review merge and split signals separately", "Candidates and deterministic signals are prompts for inspection, not automatic identity decisions.", "researcher-resolution-panel", ("identity:merge-candidates", "identity:split-signals", "records:works"), "identity", 1), LIMITS)},
     "funding_evidence": {"label": "Investigate funding evidence", "description": "Separate direct Award assertions from indirect Work-level acknowledgements.", "report_types": {"institution", "researcher", "funder"}, "question": {"id": "funding_question", "label": "What are you trying to establish?", "options": (("awards", "Which Awards are recorded"), ("outputs", "Which outputs acknowledge funding"), ("recipient", "Whether an entity received or led funding"))}, "items": (SCOPE,
         item("funding.direct", "Inspect direct Award records", "Check which fields explicitly name a recipient, investigator, amount or date; absent fields remain unknown.", "funding", ("funding:awards",), priority=1),
-        item("funding.indirect", "Inspect Work-level acknowledgements separately", "A funding link on a co-authored Work does not establish who received or administered the Award.", "funding", ("funding:work-links", "records:works"), priority=1),
+        item("funding.indirect", "Inspect Work-level acknowledgements separately", "The funding link associates the Work with a funder or Award but does not assign recipient, investigator, or administering roles to its authors or affiliations.", "funding", ("funding:work-links", "records:works"), priority=1),
         item("funding.provenance", "Record provenance and incompleteness", "Funding evidence cannot establish a complete administrative portfolio.", "funding", ("funding:provenance", "report:limitations")), LIMITS)},
     "open_access_evidence": {"label": "Inspect open-access evidence", "description": "Inspect OpenAlex access and location assertions without treating them as a policy-compliance decision.", "report_types": {"institution"}, "question": {"id": "access_question", "label": "What do you need to understand?", "options": (("availability", "Recorded free-to-read availability"), ("versions", "Repository and publication versions"), ("policy", "Evidence for a separate policy review"))}, "items": (SCOPE,
         item("access.assertions", "Inspect access-status assertions", "Check recorded access statuses and unknowns. These are changing OpenAlex assertions, not a compliance result or statement of reuse rights.", "outputs-access", ("measure:open_access",), priority=1),

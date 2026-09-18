@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pharos-openalex"
-version = "0.1.0"
+version = "1.0.0"
 description = "See how OpenAlex sees your research"
 requires-python = ">=3.11"
 license = "MIT"
@@ -21,4 +21,4 @@ pharos-web = "pharos.server:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-pharos = ["web/*.html", "web/*.css", "web/*.js", "xlsx_export.mjs"]
+pharos = ["web/*.html", "web/*.css", "web/*.js", "web/*.svg", "xlsx_export.mjs"]

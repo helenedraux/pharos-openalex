@@ -287,5 +287,70 @@ def export_bytes(report, fmt):
         return target.read_bytes(),'application/pdf' if fmt=='pdf' else 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 
 
+def build_review_pdf(record, target):
+    """Build the human-readable, use-specific output of a completed review."""
+    if not isinstance(record,dict) or record.get('schema_version')!='pharos-review-record-v3':
+        raise ValueError('Choose a valid Pharos review record.')
+    guide=record.get('guide') or {}; purpose=guide.get('purpose') or {}; report=guide.get('report') or {}
+    judgements=record.get('judgements') or []; limitations=record.get('limitations') or []
+    if not isinstance(judgements,list) or len(judgements)>100 or not purpose.get('label') or not report.get('identity_name'):
+        raise ValueError('The review record is incomplete or too large.')
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+    styles=getSampleStyleSheet()
+    styles.add(ParagraphStyle(name='ReviewTitle',fontName='Helvetica-Bold',fontSize=25,leading=30,textColor=colors.HexColor('#111c30'),spaceAfter=12))
+    styles.add(ParagraphStyle(name='ReviewHeading',fontName='Helvetica-Bold',fontSize=15,leading=19,textColor=colors.HexColor('#111c30'),spaceBefore=15,spaceAfter=7))
+    styles.add(ParagraphStyle(name='ReviewBody',fontSize=10,leading=14,textColor=colors.HexColor('#354155'),spaceAfter=7))
+    styles.add(ParagraphStyle(name='ReviewSmall',fontSize=8,leading=11,textColor=colors.HexColor('#596476'),spaceAfter=5))
+    styles.add(ParagraphStyle(name='ReviewStatus',fontName='Helvetica-Bold',fontSize=17,leading=21,textColor=colors.HexColor('#8b5d08'),spaceAfter=8))
+    para=lambda value,style='ReviewBody':Paragraph(escape(str(value if value not in (None,'') else 'Not recorded')).replace('\n','<br/>'),styles[style])
+    readiness=guide.get('readiness') or {}; period=report.get('period') or {}
+    period_label='–'.join(filter(None,[str(period.get('from') or period.get('start') or '')[:4],str(period.get('to') or period.get('end') or '')[:4]])) or 'All years'
+    story=[para('PHAROS / REVIEW REPORT','ReviewSmall'),para(report['identity_name'],'ReviewTitle'),para('Intended use: '+purpose['label'],'ReviewHeading'),para(readiness.get('label') or 'Review status not recorded','ReviewStatus')]
+    metadata_rows=[['OpenAlex object',report.get('identity_name')],['OpenAlex ID',report.get('identity_id')],['Object type',report.get('type')],['Snapshot period',period_label],['Snapshot retrieved',report.get('retrieved_at')],['Review report created',record.get('created_at')],['Intended use',purpose.get('label')]]
+    meta=Table([[para(k,'ReviewSmall'),para(v,'ReviewSmall')] for k,v in metadata_rows],colWidths=[125,366]);meta.setStyle(TableStyle([('BACKGROUND',(0,0),(0,-1),colors.HexColor('#f3e4bf')),('VALIGN',(0,0),(-1,-1),'TOP'),('LINEBELOW',(0,0),(-1,-1),.25,colors.HexColor('#c9c2b4')),('PADDING',(0,0),(-1,-1),6)]));story.extend([meta,Spacer(1,9),para(readiness.get('note') or 'This result is specific to the intended use and the requirements recorded below.')])
+    story.append(para('Evidence and decisions','ReviewHeading'))
+    status_labels={'meets_configured_requirement':'Meets requirement','validation_needed':'Validation needed','does_not_meet_configured_requirement':'Below requirement','not_measured':'Not measured','not_applicable':'Not applicable','not_checked':'Not checked'}
+    for index,item in enumerate(judgements,1):
+        requirement=item.get('requirement') or {}; observed=item.get('observed') or {}; materiality=item.get('materiality') or {}
+        title=item.get('title') or item.get('checklist_item_id') or f'Check {index}'
+        story.extend([para(f'{index}. {title}','ReviewHeading'),para(f"{status_labels.get(item.get('status'),item.get('status') or 'Not checked')} · {materiality.get('current','importance not recorded')} importance",'ReviewSmall')])
+        if observed.get('summary'): story.append(para('Saved evidence: '+observed['summary']))
+        threshold=requirement.get('numeric_current'); rule=(f'At least {threshold}%.' if isinstance(threshold,(int,float)) else requirement.get('current') or 'No numeric threshold; confirmation is required.')
+        story.append(para('Requirement: '+str(rule)))
+        if item.get('next_step'): story.append(para('Next action: '+item['next_step']))
+        if item.get('note'): story.append(para('Reviewer note: '+item['note']))
+        for evidence in (item.get('external_evidence') or []):
+            if isinstance(evidence,dict) and evidence.get('summary'): story.append(para('External evidence: '+evidence['summary'],'ReviewSmall'))
+    if record.get('interoperability'):
+        story.extend([PageBreak(),para('Interoperability checks','ReviewHeading')])
+        for item in record['interoperability'][:20]: story.append(para(f"{item.get('label','Check')}: {item.get('detail','Not recorded')}"))
+    story.append(para('Limitations','ReviewHeading'))
+    for limitation in limitations[:30]: story.append(para('• '+str(limitation),'ReviewSmall'))
+    story.append(para('This report communicates the result of a use-specific review. It should be read with the accompanying snapshot data, scope, methodology, and provenance.','ReviewSmall'))
+    def footer(canvas,doc):
+        canvas.saveState();canvas.setFont('Helvetica',8);canvas.setFillColor(colors.HexColor('#596476'));canvas.drawString(52,27,'Pharos review report | '+str(purpose.get('label'))[:55]);canvas.drawRightString(A4[0]-52,27,str(doc.page));canvas.restoreState()
+    SimpleDocTemplate(str(target),pagesize=A4,leftMargin=52,rightMargin=52,topMargin=42,bottomMargin=47,title=f"Pharos review report — {purpose['label']}",author='Pharos').build(story,onFirstPage=footer,onLaterPages=footer)
+
+
+def review_report_bytes(record):
+    with tempfile.TemporaryDirectory(prefix='pharos-review-report-') as tmp:
+        target=Path(tmp)/'review-report.pdf'
+        try:
+            import reportlab
+        except ImportError:
+            python=os.environ.get('PHAROS_EXPORT_PYTHON',str(RUNTIME/'python/bin/python3'))
+            if not Path(python).is_file(): raise ValueError('PDF export needs ReportLab. Install pharos-openalex[exports] or set PHAROS_EXPORT_PYTHON.')
+            source=Path(tmp)/'review.json';source.write_text(json.dumps(record),encoding='utf-8')
+            env={k:v for k,v in os.environ.items() if k!='OPENALEX_API_KEY'};env['PYTHONPATH']=str(Path(__file__).resolve().parent.parent)
+            result=subprocess.run([python,'-m','pharos.report_exports',str(source),str(target),'review'],env=env,capture_output=True,timeout=90)
+            if result.returncode: raise ValueError('The PDF review report could not be generated. Check the local PDF runtime.')
+        else: build_review_pdf(record,target)
+        return target.read_bytes(),'application/pdf'
+
+
 if __name__=='__main__':
-    build_pdf(json.loads(Path(sys.argv[1]).read_text()),sys.argv[2])
+    data=json.loads(Path(sys.argv[1]).read_text())
+    build_review_pdf(data,sys.argv[2]) if len(sys.argv)>3 and sys.argv[3]=='review' else build_pdf(data,sys.argv[2])

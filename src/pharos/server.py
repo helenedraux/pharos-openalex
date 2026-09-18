@@ -303,7 +303,7 @@ class Application:
             try:
                 with self.lock: session.jobs[identifier].update(status='loading',message='Preparing your coverage report')
                 cached = json.loads(target.read_text()) if target.exists() else None
-                expected=12 if kind=='author' else 5 if kind=='funder' else 2 if kind in ('source','publisher') else 16
+                expected=12 if kind=='author' else 8 if kind=='funder' else 3 if kind in ('source','publisher') else 16
                 if cached and cached.get('implementation_version') == expected:
                     result = cached
                 else:
@@ -384,9 +384,9 @@ class Handler(BaseHTTPRequestHandler):
         try:
             app=self.server.app
             session=self.session()
-            if path in ('/','/**','/index.html','/app.js','/style.css'):
+            if path in ('/','/**','/index.html','/app.js','/style.css','/favicon.svg'):
                 name='index.html' if path in ('/','/**','/index.html') else path[1:]
-                content_type='text/html; charset=utf-8' if name == 'index.html' else 'text/javascript; charset=utf-8' if name == 'app.js' else 'text/css; charset=utf-8'
+                content_type='text/html; charset=utf-8' if name == 'index.html' else 'text/javascript; charset=utf-8' if name == 'app.js' else 'image/svg+xml' if name == 'favicon.svg' else 'text/css; charset=utf-8'
                 return self.send(200,(STATIC/name).read_bytes(),content_type)
             if path == '/api/config': return self.send(200,{'current_year':date.today().year,**app.auth_status(session),'review_assistance':assistance_status(),'accepts_session_key':app.hosted and all(origin.startswith('https://') for origin in self.server.deployment.allowed_origins),'saved':app.saved(session.directory)})
             if path == '/api/search':
@@ -431,13 +431,14 @@ class Handler(BaseHTTPRequestHandler):
         except (OSError,KeyError,TypeError): return self.send(502,{'error':'Could not read OpenAlex data. Try again.'})
     def do_POST(self):
         if not self.trusted(): return self.send(403,{'error':'Use the configured Pharos address.'})
-        if self.path not in ('/api/overview','/api/export','/api/session-key','/api/review-guide'): return self.send(404,{'error':'Not found'})
+        if self.path not in ('/api/overview','/api/export','/api/session-key','/api/review-guide','/api/review-report'): return self.send(404,{'error':'Not found'})
         try:
             app=self.server.app
             session=self.session()
             if self.path == '/api/session-key': app.consume(session)
             length=int(self.headers.get('Content-Length','0'))
-            if not 0 < length <= 4096: raise ValueError('Invalid request size.')
+            maximum=262144 if self.path == '/api/review-report' else 4096
+            if not 0 < length <= maximum: raise ValueError('Invalid request size.')
             body=json.loads(self.rfile.read(length))
             if self.path == '/api/session-key':
                 if not all(origin.startswith('https://') for origin in self.server.deployment.allowed_origins):
@@ -465,6 +466,13 @@ class Handler(BaseHTTPRequestHandler):
                     content,mime=export_bytes(report,fmt)
                     app.account_export(session,len(content))
                 return self.send(200,content,mime,'pharos-coverage.'+fmt)
+            if self.path == '/api/review-report':
+                from pharos.report_exports import review_report_bytes
+                app.consume_export(session)
+                with app.export_lock:
+                    content,mime=review_report_bytes(body)
+                    app.account_export(session,len(content))
+                return self.send(200,content,mime,'pharos-review-report.pdf')
             if self.path == '/api/review-guide':
                 with app.lock:
                     job=session.jobs.get(body.get('job'),{})
@@ -495,7 +503,7 @@ class Handler(BaseHTTPRequestHandler):
         except (KeyError,TypeError): self.send(400,{'error':'Confirm an institution and select valid years (up to 50 years).'})
         except Exception:
             # Suppress subprocess diagnostics and local paths in browser responses.
-            message='The export could not be generated. Try CSV or JSON, or check the local export runtime.' if self.path == '/api/export' else 'The report could not be built. OpenAlex may be temporarily unavailable; try again.'
+            message='The export could not be generated. Check the local export runtime.' if self.path in ('/api/export','/api/review-report') else 'The view could not be built. OpenAlex may be temporarily unavailable; try again.'
             self.send(500,{'error':message})
 
 

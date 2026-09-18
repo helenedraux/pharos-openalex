@@ -2,13 +2,14 @@
 
 ## Product model
 
-Pharos distinguishes five things:
+Pharos distinguishes six things:
 
 1. A **view** is the interactive evidence about one OpenAlex object.
 2. A **snapshot** is the dated aggregate evidence for an explicit scope and period.
 3. A **review** tests that snapshot against one or more intended uses.
 4. A **report** communicates the use-specific results, limitations, and methodology.
-5. A **data package** carries the supporting data, identifiers, scope, and provenance.
+5. A **data export** is the accompanying CSV, Excel, or JSON data.
+6. An **export package** carries the report, data export, scope, methodology, and provenance together.
 
 ## Decision model
 
@@ -41,5 +42,5 @@ Recorded acknowledgement prevalence, open-access availability, ORCID presence, a
 2. Add deterministic provisional readiness and transparent threshold metadata.
 3. Bring source-of-truth and required-join information into every evidence row.
 4. Preserve the detailed review for recording statuses, evidence, overrides, and notes.
-5. Export a versioned combined review record and a human-readable report.
+5. Export a versioned combined review record and a human-readable PDF report that names its intended use or uses.
 6. Add calculated peer benchmarks only after population matching and provenance are implemented.
