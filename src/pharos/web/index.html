@@ -265,7 +265,6 @@
 <div class="step">OPEN AN OPENALEX VIEW</div>
 <h1>Create a snapshot and open its view</h1>
 <p class="lede">Choose the record and period you intend to analyse. Pharos keeps that scope visible throughout the view and any later review report.</p>
-<p id="session-key-link" class="session-key-link" hidden><a href="#session-key-panel">Add your OpenAlex API key for this session →</a> <span>Optional; anonymous access remains available.</span></p>
 <form id="portrait-form" class="start-card">
 <fieldset>
 <legend>1 · Unit of interest</legend>
@@ -314,19 +313,18 @@
 </div>
 <p id="year-help" class="small muted">The default ends with the latest complete calendar year. Include the current year only when partial-year monitoring is useful.</p>
 </fieldset>
-<button class="primary confirm" id="build" type="submit" disabled>Create snapshot and open view →</button>
-</form>
 <section id="session-key-panel" class="session-key" hidden>
-<div class="step">OPTIONAL OPENALEX ACCESS</div>
-<h2>Use your key for this session</h2>
-<p>Your key passes through this Pharos server over HTTPS. It is kept only in server memory for this browser session and is not written to reports, caches, logs, cookies, or browser storage. Running Pharos locally remains the strongest privacy option.</p>
+<div class="step">4 · Add your key <span>Optional</span></div>
+<p>Use your OpenAlex key for this browser session, or continue anonymously. It is kept only in server memory.</p>
 <div class="session-key-controls">
-<input id="session-key" type="password" autocomplete="off" spellcheck="false" maxlength="512" aria-label="OpenAlex API key">
+<input id="session-key" type="password" autocomplete="off" spellcheck="false" maxlength="512" aria-label="OpenAlex API key" placeholder="Paste your OpenAlex API key">
 <button id="save-session-key" type="button" class="secondary">Use key</button>
 <button id="forget-session-key" type="button" class="text-button">Forget key</button>
 </div>
 <p id="session-key-status" class="small muted" role="status">Anonymous OpenAlex access.</p>
 </section>
+<button class="primary confirm" id="build" type="submit" disabled>Create snapshot and open view →</button>
+</form>
 <div class="saved">
 <div class="step">SAVED SNAPSHOTS</div>
 <div id="saved-list">
