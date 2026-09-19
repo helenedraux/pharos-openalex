@@ -100,6 +100,21 @@ class OverviewTests(unittest.TestCase):
         api.get=lambda path,params=None: {'results':[{'id':'https://openalex.org/F1','display_name':'Test Funder','ids':{'crossref':'1001'}}]}
         rows=funder_candidates(api,'10.13039/1001')
         self.assertEqual(rows[0]['id'],'https://openalex.org/F1')
+    def test_funder_alternate_title_is_found_when_autocomplete_misses(self):
+        class AliasAPI:
+            def __init__(self): self.calls=[]
+            def get(self,path,params=None):
+                self.calls.append((path,params))
+                if path=='autocomplete/funders': return {'results':[]}
+                return {'results':[{'id':'https://openalex.org/F4320314731',
+                    'display_name':'UK Research and Innovation','alternate_titles':['UKRI'],
+                    'ids':{'crossref':'100014013'}}]}
+        api=AliasAPI()
+        rows=funder_candidates(api,'UKRI')
+        self.assertEqual(rows[0]['display_name'],'UK Research and Innovation')
+        self.assertEqual(rows[0]['hint'],'Also known as UKRI')
+        self.assertEqual(api.calls[1][0],'funders')
+        self.assertEqual(api.calls[1][1]['search'],'UKRI')
     def test_qualified_unknown_is_excluded_from_subject_denominator(self):
         p=overview(AggregateAPI(),'I1',2020,2020)
         self.assertEqual(p['population'],{'eligible_works':3,'classified_works':2,'unclassified_works':1})

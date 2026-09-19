@@ -106,10 +106,16 @@ def funder_candidates(api, text):
     elif re.fullmatch(r'(?:10\.13039/)?\d+',crossref):
         crossref=crossref.removeprefix('10.13039/')
         rows=api.get('funders',{'filter':'ids.crossref:'+crossref,'per_page':8}).get('results',[])
-    else: rows=api.get('autocomplete/funders',{'q':text}).get('results',[])[:8]
+    else:
+        rows=api.get('autocomplete/funders',{'q':text}).get('results',[])[:8]
+        if not rows and len(text)>=3:
+            rows=api.get('funders',{'search':text,'per_page':8,
+                'select':'id,display_name,alternate_titles,country_code,description,works_count,awards_count,ids'}).get('results',[])
     return [{'id':r.get('id'),'display_name':r.get('display_name'),'country_code':r.get('country_code'),
              'description':r.get('description'),'works_count':r.get('works_count'),'awards_count':r.get('awards_count'),
-             'hint':r.get('hint'),'ids':r.get('ids') or ({'crossref':r.get('external_id')} if r.get('external_id') else {})} for r in rows if r.get('id')]
+             'hint':r.get('hint') or next((f'Also known as {alias}' for alias in r.get('alternate_titles') or []
+                 if alias.casefold()==text.casefold()),None),
+             'ids':r.get('ids') or ({'crossref':r.get('external_id')} if r.get('external_id') else {})} for r in rows if r.get('id')]
 
 
 def publisher_candidates(api, text):
